@@ -1,8 +1,8 @@
 # name: User Gallery
 # about:
 # version: 0.1
-# authors: luanht
-# url: https://github.com/luanht
+# authors: M. Sedlmayr
+# url: https://github.com/wishspinner
 
 
 register_asset "stylesheets/common/discourse-user-gallery.scss"
