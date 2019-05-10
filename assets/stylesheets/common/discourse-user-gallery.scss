@@ -1,10 +1,14 @@
 .user-gallery-container {
   .item {
-    border: 1px solid #eee;
-    margin-bottom: 10px;
-    padding: 10px;
+    border: none;
+    margin-bottom: 6px;
+    padding:0;
     margin-right: 10px;
-    max-width: 250px;
+    width: calc(100%/4);
     float: left;
   }
+}
+
+.user-table {
+  overflow:auto;
 }
