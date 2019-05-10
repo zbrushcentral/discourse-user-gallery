@@ -1,0 +1,13 @@
+{{#load-more selector=".user-gallery-container .item" action=(action "loadMore")}}
+  <div class="user-gallery-container">
+    {{#each model.items as |item|}}
+    <UserGalleryItem @item={{item}} />
+    {{/each}}
+  </div>
+{{/load-more}}
+
+{{#if isEmpty}}
+  <div class="alert alert-info report-alert">{{i18n "discourse_user_gallery.empty"}}</div>
+{{/if}}
+
+{{conditional-loading-spinner condition=model.loading}}
