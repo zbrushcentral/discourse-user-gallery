@@ -6,8 +6,6 @@
 
 
 register_asset "stylesheets/common/discourse-user-gallery.scss"
-register_asset 'javascripts/discourse/lib/masonry/masonry.js'
-register_asset 'javascripts/discourse/lib/imagesloaded/imagesloaded.js'
 
 enabled_site_setting :discourse_user_gallery_enabled
 
