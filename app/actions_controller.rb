@@ -10,8 +10,7 @@ class DiscourseUserGallery::ActionsController < ::ApplicationController
 
     query = ::Upload.includes(:posts).
       order('posts.created_at DESC').
-      where(posts: {user_id: user.id}).
-      group('uploads.id')
+      where(posts: {user_id: user.id})
 
     uploads = query.
       preload(posts: :topic).
