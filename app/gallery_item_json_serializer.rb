@@ -6,6 +6,7 @@ class GalleryItemJsonSerializer < ApplicationSerializer
              :topic_id,
              :topic_title,
              :topic_slug,
+             :topic_category_id,
              :created_at
 
   def thumb_url
@@ -38,5 +39,9 @@ class GalleryItemJsonSerializer < ApplicationSerializer
 
   def topic_slug
     post.topic.slug
+  end
+  
+  def topic_category_id
+    post.topic.category_id
   end
 end
