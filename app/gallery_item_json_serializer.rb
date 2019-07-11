@@ -1,6 +1,7 @@
 class GalleryItemJsonSerializer < ApplicationSerializer
   attributes :thumb_url,
              :post_id,
+             :post_created_at,
              :post_number,
              :topic_id,
              :topic_title,
@@ -17,6 +18,10 @@ class GalleryItemJsonSerializer < ApplicationSerializer
 
   def post_id
     post.id
+  end
+  
+  def post_created_at
+    post.created_at
   end
 
   def post_number
