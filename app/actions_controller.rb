@@ -9,8 +9,8 @@ class DiscourseUserGallery::ActionsController < ::ApplicationController
     user = fetch_user_from_params
 
     query = ::Upload.includes(:posts).
-      where(posts: {user_id: user.id}).
       order('posts.created_at DESC').
+      where(posts: {user_id: user.id}).
       group('uploads.id')
 
     uploads = query.
