@@ -8,7 +8,7 @@ class DiscourseUserGallery::ActionsController < ::ApplicationController
 
     user = fetch_user_from_params
 
-    query = ::Upload.joins(:posts).
+    query = ::Upload.joins(:posts, :categories).
       where(posts: {user_id: user.id}).
       where(categories: {read_restricted: false}).
       order('posts.created_at DESC').
