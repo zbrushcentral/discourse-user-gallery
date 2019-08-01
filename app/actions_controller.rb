@@ -10,7 +10,7 @@ class DiscourseUserGallery::ActionsController < ::ApplicationController
 
     query = ::Upload.joins(posts: {topic: :category}).
       where(posts: {user_id: user.id}).
-      where(categories: {read_restricted: false}).
+      where(categories: {id: '7'}).
       where.not(width: '72').
       order('posts.created_at DESC').
       group('uploads.id', 'posts.created_at')
