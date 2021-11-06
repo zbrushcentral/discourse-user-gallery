@@ -1,9 +1,10 @@
 import { postUrl } from "discourse/lib/utilities";
-import computed from "ember-addons/ember-computed-decorators";
+import discourseComputed from "discourse-common/utils/decorators";
+import Component from "@ember/component";
 
-export default Ember.Component.extend({
-  @computed("item.topic_slug", "item.topic_id", "item.post_number")
+export default Component.extend({
+  @discourseComputed("item.topic_slug", "item.topic_id", "item.post_number")
   postUrl(slug, topicId, postNumber) {
     return postUrl(slug, topicId, postNumber);
-  }
+  },
 });
