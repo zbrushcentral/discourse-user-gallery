@@ -2,7 +2,7 @@
 # name: discourse-user-gallery
 # about:
 # version: 0.1
-# authors: M. Sedlmayr
+# authors: M. Sedlmayr, N. Selvidge
 # url: https://github.com/wishspinner
 
 
