@@ -1,6 +1,6 @@
-import UserGallery from '../models/user-gallery';
+import UserGallery from "../models/user-gallery";
 
-export default Discourse.Route.extend({
+export default Ember.Route.extend({
   model() {
     return UserGallery.create({ user: this.modelFor("user") });
   },

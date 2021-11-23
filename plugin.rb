@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # name: discourse-usesr-gallery
 # about:
 # version: 0.1

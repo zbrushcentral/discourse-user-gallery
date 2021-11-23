@@ -1,5 +1,5 @@
 DiscourseUserGallery::Engine.routes.draw do
-  get "/:username/list" => "actions#list",
+  get ":username/list" => "actions#list",
     constraints: { username: RouteFormat.username }
 end
 

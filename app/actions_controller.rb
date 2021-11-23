@@ -5,7 +5,7 @@ class DiscourseUserGallery::ActionsController < ::ApplicationController
   def list
     offset = params[:offset].to_i
     limit = params.key?(:limit) ? params[:limit].to_i : DEFAULT_PAGE_SIZE
-
+ 
     user = fetch_user_from_params
 
     query = ::Upload.joins(posts: {topic: :category}).
@@ -20,7 +20,6 @@ class DiscourseUserGallery::ActionsController < ::ApplicationController
       preload(posts: :topic).
       offset(offset).
       limit(limit)
-
     render_json_dump(
       {
         items: serialize_data(uploads, GalleryItemJsonSerializer)

@@ -1,18 +1,19 @@
-import computed from "ember-addons/ember-computed-decorators";
+import discourseComputed from "discourse-common/utils/decorators";
+import Component from "@ember/component";
 
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
-    this.send('loadMore');
+    this.send("loadMore");
   },
 
-  @computed("model.loaded", "model.canLoadMore", "model.items")
+  @discourseComputed("model.loaded", "model.canLoadMore", "model.items")
   isEmpty(loaded, canLoadMore, items) {
-    return !canLoadMore && loaded && (items.length === 0);
+    return !canLoadMore && loaded && items.length === 0;
   },
 
   actions: {
     loadMore() {
       this.get("model").loadMore();
-    }
-  }
+    },
+  },
 });
