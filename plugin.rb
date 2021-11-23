@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# name: discourse-user-gallery
+# name: discourse-usesr-gallery
 # about:
 # version: 0.1
 # authors: M. Sedlmayr
