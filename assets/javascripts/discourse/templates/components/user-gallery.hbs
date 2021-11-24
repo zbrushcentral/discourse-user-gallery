@@ -4,8 +4,8 @@
 }}
 
   <div class="user-gallery-container">
-    {{#each model.items as |item|}}
-      <UserGalleryItem @item={{item}} />
+    {{#each model.items as |item index|}}
+      <UserGalleryItem @item={{item}} @index={{index}} />
     {{/each}}
   </div>
 {{/load-more}}
