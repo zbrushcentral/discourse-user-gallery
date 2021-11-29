@@ -7,6 +7,7 @@
 
 
 register_asset "stylesheets/common/discourse-user-gallery.scss"
+register_asset "stylesheets/common/active-challenges.scss"
 
 enabled_site_setting :discourse_user_gallery_enabled
 
