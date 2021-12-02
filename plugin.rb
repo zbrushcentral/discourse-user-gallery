@@ -7,6 +7,9 @@
 
 
 register_asset "stylesheets/common/discourse-user-gallery.scss"
+register_asset "stylesheets/common/active-challenges.scss"
+register_svg_icon "trophy" if respond_to?(:register_svg_icon)
+register_svg_icon "chess" if respond_to?(:register_svg_icon)
 
 enabled_site_setting :discourse_user_gallery_enabled
 

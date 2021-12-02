@@ -1,0 +1,24 @@
+<div class="active-challenges">
+  {{#each challenges as |challenge|}}
+    <img
+      src={{challenge.thumbnail}}
+      alt="image"
+      class="active-challenges-thumbnail"
+    />
+    {{#if challenge.isClosed}}
+      <div class="trophy-icon">
+        {{d-icon "trophy"}}
+      </div>
+      <div class="closed-text">
+        <span class="closed">Closed Contest</span>
+      </div>
+    {{else if challenge.isOpen}}
+      <div class="chess-icon">
+        {{d-icon "chess"}}
+      </div>
+      <div class="open-text">
+        <span class="open">Open Contest</span>
+      </div>
+    {{/if}}
+  {{/each}}
+</div>
