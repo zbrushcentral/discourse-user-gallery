@@ -10,14 +10,14 @@
         {{d-icon "trophy"}}
       </div>
       <div class="closed-text">
-        <span class="closed">Closed Contest</span>
+        <span class="closed">{{challenge.name}}</span>
       </div>
     {{else if challenge.isOpen}}
       <div class="chess-icon">
         {{d-icon "chess"}}
       </div>
       <div class="open-text">
-        <span class="open">Open Contest</span>
+        <span class="open">{{challenge.name}}</span>
       </div>
     {{/if}}
   </div>
