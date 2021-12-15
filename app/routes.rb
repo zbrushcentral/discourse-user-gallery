@@ -6,11 +6,10 @@ DiscourseUserGallery::Engine.routes.draw do
   Discourse::Application.routes.append do
     mount ::DiscourseUserGallery::Engine, at: "/discourse-user-gallery"
     get "u/:username/gallery" => "users#show"
-    # constraints: { username: RouteFormat.username }
     
     get "/challenge-details" => "challenges#index"
-    get "/challenge-details/:id" => "challenges#show"
-   
+    get "/challenge-details/:id" => "challenges#show",
+    constraints: { username: RouteFormat.username }
 end
 
   
