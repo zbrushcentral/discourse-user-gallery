@@ -1,10 +1,12 @@
 {{#each challenges as |challenge|}}
   <div class="active-challenge">
-    <img
-      src={{challenge.thumbnail}}
-      alt="image"
-      class="active-challenge-thumbnail"
-    />
+    <a href="https://pixologic.com/challenge-details/{{challenge.id}}">
+      <img
+        src={{challenge.thumbnail}}
+        alt="image"
+        class="active-challenge-thumbnail"
+      />
+    </a>
     {{#if challenge.isClosed}}
       <div class="trophy-icon">
         {{d-icon "trophy"}}
