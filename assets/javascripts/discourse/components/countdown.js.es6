@@ -34,7 +34,7 @@ export default Component.extend({
 
     let daysRemaining = Math.floor(timeGap / day); 
     this.set("days", daysRemaining < 10 ? '0' + daysRemaining : daysRemaining);
-    console.log(hour)
+
 
     let hoursRemaining = Math.floor((timeGap % day) / hour);
     this.set("hours", hoursRemaining < 10 ? '0' + hoursRemaining : hoursRemaining);
