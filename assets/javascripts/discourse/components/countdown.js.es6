@@ -16,10 +16,10 @@ export default Component.extend({
   },
 
   isFinished() {
-    this.set("day", 0);
-    this.set("hour", 0);
-    this.set("minute", 0);
-    this.set("second", 0);
+    this.set("days", "00");
+    this.set("hours", "00");
+    this.set("minutes", "00");
+    this.set("seconds", "00");
   },
 
   countdown() {
@@ -27,15 +27,24 @@ export default Component.extend({
     const now = new Date().getTime();
     const timeGap = countDate - now;
 
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
+    let second = 1000;
+    let minute = second * 60;
+    let hour = minute * 60;
+    let day = hour * 24;
 
-    this.set("day", Math.floor(timeGap / day));
-    this.set("hour", Math.floor((timeGap % day) / hour));
-    this.set("minute", Math.floor((timeGap % hour) / minute));
-    this.set("second", Math.floor((timeGap % minute) / second));
+    let daysRemaining = Math.floor(timeGap / day); 
+    this.set("days", daysRemaining < 10 ? '0' + daysRemaining : daysRemaining);
+    console.log(hour)
+
+    let hoursRemaining = Math.floor((timeGap % day) / hour);
+    this.set("hours", hoursRemaining < 10 ? '0' + hoursRemaining : hoursRemaining);
+
+    let minutesRemaining = Math.floor((timeGap % hour) / minute);
+    this.set("minutes", minutesRemaining < 10 ? '0' + minutesRemaining : minutesRemaining);
+
+    let secondsRemaining = Math.floor((timeGap % minute) / second);
+    this.set("seconds",  secondsRemaining < 10 ? '0' + secondsRemaining : secondsRemaining);
+  
 
     if (timeGap < 0) {
       this.isFinished();
