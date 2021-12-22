@@ -1,6 +1,29 @@
-<div class="item" id={{index}}>
+<div class="item">
+  {{#if isChallengeListOpen}}
+    <div class="challenge-wrapper"><ul
+        class="ul-challenge"
+        {{on "mouseleave" this.closeChallengeList}}
+      >
+        {{#each challengeItems as |challenge|}}
+          {{#if challenge.imageSubmitted}}<li
+              class="challenge-name"
+              {{on "click" (fn this.removeSubmission challenge.postId)}}
+            >
+              {{challenge.name}}
+              <span class="challenge-gallery-status">-</span></li>{{else}}
+            <li
+              class="challenge-name"
+              {{on "click" (fn this.addSubmission challenge.topicid)}}
+            >
+              {{challenge.name}}
+              <span class="challenge-gallery-status">+</span></li>
+          {{/if}}
+        {{/each}}
+      </ul></div>
+  {{/if}}
+  <div class="open-challenge-list" {{on "click" this.openChallengeList}}><a
+    >+</a></div>
   <a href="{{postUrl}}"><img src="{{item.thumb_url}}" /><div
       class="gallery-title"
     >{{item.topic_title}}</div></a>
 </div>
-
