@@ -2,7 +2,7 @@ import Adapter from "@ember-data/adapter";
 
 const getChallenges = async () => {
   const res = await fetch(
-    "https://pixologic.com/zbc-challenge/get-challenges.php"
+    "http://localhost:8888/zbc-challenge/get-challenges.php"
   );
   const data = await res.json();
   const keys = Object.keys(data);
