@@ -4,8 +4,13 @@
 }}
 
   <div class="user-gallery-container">
-    {{#each model.items as |item index|}}
-      <UserGalleryItem @item={{item}} @index={{index}} />
+    {{#each model.userGallery.items as |item index|}}
+      <UserGalleryItem
+        @challenges={{model.challenges}}
+        @item={{item}}
+        @index={{index}}
+        @activity={{model.activity}}
+      />
     {{/each}}
   </div>
 {{/load-more}}
@@ -16,4 +21,4 @@
     }}</div>
 {{/if}}
 
-{{conditional-loading-spinner condition=model.loading}}
+{{conditional-loading-spinner condition=model.userGallery.loading}}
