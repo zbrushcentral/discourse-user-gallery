@@ -7,8 +7,7 @@ export default Ember.Route.extend({
       `http://localhost:8888/zbc-challenge/get-challenge.php?id=${id}`
     );
     const challenge = await res.json();
-    console.log(challenge)
+    // console.log(challenge)
     return { challenge };
   },
- 
 });
