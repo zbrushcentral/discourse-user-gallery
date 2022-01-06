@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     return {
       userGallery: UserGallery.create({ user }),
       challenges: await $.ajax(
-        "http://localhost:8888/zbc-challenge/get-challenges.php"
+        "https://pixologic.com/zbc-challenge/get-challenges.php"
       ),
       activity: await $.ajax("/u/" + user.username + "/activity.json", {
         headers: {
