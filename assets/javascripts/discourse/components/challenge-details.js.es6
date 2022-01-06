@@ -8,6 +8,5 @@ export default class ChallengeDetailsComponent extends Component {
       this.set("name", api.getCurrentUser().username);
       return;
     });
-    console.log(this.get("name"));
   }
 }
