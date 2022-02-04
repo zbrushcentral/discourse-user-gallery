@@ -7,7 +7,6 @@ export default Ember.Route.extend({
       `https://pixologic.com/zbc-challenge/get-challenge.php?id=${id}`
     );
     const challenge = await res.json();
-    // console.log(challenge)
     return { challenge };
   },
 });

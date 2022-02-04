@@ -52,7 +52,7 @@ export default class UserGalleryItemComponent extends Component {
 
     const modalModel = {
       challengeId: challengeId,
-      image: imgSrc,
+      imageUrl: imgSrc,
       challengeName: challenge.name,
     };
     showModal("challengeSubmissionModal", {
