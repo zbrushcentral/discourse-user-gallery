@@ -20,7 +20,9 @@ export default class ChallengeSubmissionModalController extends Controller {
         },
         type: "POST",
         data: JSON.stringify({
-          raw: "https:" + this.get("model").image,
+          raw: `<img src="${window.location.protocol}//${window.location.host}${
+            this.get("model").imageUrl
+          }"/>`,
           topic_id: this.get("model").challengeId,
         }),
       });
