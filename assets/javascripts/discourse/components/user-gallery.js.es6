@@ -1,6 +1,7 @@
 import discourseComputed from "discourse-common/utils/decorators";
 import Component from "@ember/component";
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { action } from "@ember/object";
 
 export default class UserGalleryComponent extends Component {
   constructor() {
@@ -28,9 +29,8 @@ export default class UserGalleryComponent extends Component {
     return !canLoadMore && loaded && items.length === 0;
   }
 
-  actions = {
-    loadMore() {
-      this.get("model").userGallery.loadMore();
-    },
-  };
+  @action
+  loadMore() {
+    this.get("model").userGallery.loadMore();
+  }
 }
