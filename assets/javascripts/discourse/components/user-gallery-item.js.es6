@@ -12,7 +12,9 @@ export default class UserGalleryItemComponent extends Component {
 
   willRender() {
     const challengeItems = this.get("challenges");
-    challengeItems.map(function (challenge) {
+    console.log(challengeItems);
+    challengeItems.map((challenge) => {
+      console.log(challenge);
       let postId;
       const imageSubmitted =
         this.get("activity").find((act) => {
