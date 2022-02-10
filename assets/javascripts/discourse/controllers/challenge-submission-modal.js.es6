@@ -11,7 +11,7 @@ export default class ChallengeSubmissionModalController extends Controller {
   @action
   async confirmSubmission() {
     try {
-      const res = await $.ajax("/posts.json", {
+      const res = await $.ajax("https://www3.zbrushcentral.com/posts.json", {
         contentType: "application/json",
         headers: {
           "Api-Username": window.location.pathname.split("/")[2],
