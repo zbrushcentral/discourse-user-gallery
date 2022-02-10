@@ -64,7 +64,7 @@ export default class UserGalleryItemComponent extends Component {
   }
   @action
   async removeSubmission(postId) {
-    await $.ajax(`/posts/${postId}`, {
+    await $.ajax(`https://www3.zbrushcentral.com/posts/${postId}`, {
       contentType: "application/json",
       headers: {
         "Api-Username": this.getUserPortfolio(),
