@@ -56,6 +56,7 @@ export default class UserGalleryItemComponent extends Component {
       imageUrl: imgSrc,
       challengeName: challenge.name,
     };
+    console.log("TEST!!!");
     showModal("challengeSubmissionModal", {
       model: modalModel,
       titleTranslated: "Challenge Entry",
