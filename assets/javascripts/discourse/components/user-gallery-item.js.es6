@@ -11,8 +11,7 @@ export default class UserGalleryItemComponent extends Component {
   }
 
   willRender() {
-    const challengeItems = this.get("challenges");
-    challengeItems.map((challenge) => {
+    const challengeItems = this.get("challenges").map((challenge) => {
       let postId;
       const imageSubmitted =
         this.get("activity").find((act) => {
@@ -56,7 +55,6 @@ export default class UserGalleryItemComponent extends Component {
       imageUrl: imgSrc,
       challengeName: challenge.name,
     };
-    console.log("TEST!!!");
     showModal("challengeSubmissionModal", {
       model: modalModel,
       titleTranslated: "Challenge Entry",
@@ -64,7 +62,7 @@ export default class UserGalleryItemComponent extends Component {
   }
   @action
   async removeSubmission(postId) {
-    await $.ajax(`https://www3.zbrushcentral.com/posts/${postId}`, {
+    await $.ajax(`/posts/${postId}`, {
       contentType: "application/json",
       headers: {
         "Api-Username": this.getUserPortfolio(),
