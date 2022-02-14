@@ -1,13 +1,14 @@
 <div class="challenges-list">
   {{active-challenges-list}}
 </div>
-<div
-  class="challenge-container"
-  style="background:url({{this.model.challenge.thumbnail}}); 
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  "
->
+<div class="challenge-container">
+  <div class="challenge-thumbnail-header">
+    <img
+      src="{{this.model.challenge.thumbnail}}"
+      class="challenge-thumbnail"
+      alt="Challenge Thumbnail"
+    />
+  </div>
   <div class="row">
     <h1>{{this.model.challenge.name}} </h1>
   </div>
