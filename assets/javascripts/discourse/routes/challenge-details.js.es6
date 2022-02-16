@@ -1,15 +1,18 @@
 import { Route } from "@ember/routing/route";
+import { zbc_domain } from "../utils/const";
+import { pixo_domain } from "../utils/const";
 
 export default Ember.Route.extend({
   async model(params) {
     const { id } = params;
+
     const res = await fetch(
-      `https://pixologic.com/zbc-challenge/get-challenge.php?id=${id}`
+      `${pixo_domain}/zbc-challenge/get-challenge.php?id=${id}`
     );
     const challenge = await res.json();
     const topic = challenge.topic;
 
-    const url = `https://www3.zbrushcentral.com/t/${topic}/posts.json`;
+    const url = `${zbc_domain}/t/${topic}/posts.json`;
     const response = await fetch(url).then((res) => res.json());
 
     const posts = response.post_stream.posts;

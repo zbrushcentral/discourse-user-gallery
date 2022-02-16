@@ -1,9 +1,8 @@
 import Adapter from "@ember-data/adapter";
+import { pixo_domain } from "../utils/const";
 
 const getChallenges = async () => {
-  const res = await fetch(
-    "https://pixologic.com/zbc-challenge/get-challenges.php"
-  );
+  const res = await fetch(`${pixo_domain}/zbc-challenge/get-challenges.php`);
   const data = await res.json();
   const keys = Object.keys(data);
   const result = [];
