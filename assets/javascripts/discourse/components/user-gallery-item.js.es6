@@ -57,27 +57,17 @@ export default class UserGalleryItemComponent extends Component {
     };
     showModal("challengeSubmissionModal", {
       model: modalModel,
-      titleTranslated: "Challenge Entry",
+      titleTranslated: "Challenge Submission",
     });
   }
   @action
-  async removeSubmission(postId) {
-    await $.ajax(`/posts/${postId}`, {
-      contentType: "application/json",
-      headers: {
-        "Api-Username": this.getUserPortfolio(),
-        "Api-Key":
-          "9410ad25edbc853073e7eda513f25f97a2dc2ed6c3f366597296ad1ab0447c15",
-      },
-      type: "DELETE",
+  removeSubmission(postId) {
+    const modalModel = {
+      postId: postId,
+    };
+    showModal("challengeRemoveSubmissionModal", {
+      model: modalModel,
+      titleTranslated: "Remove Challenge Submission",
     });
-
-    showModal("challengeSubmissionRemoveSuccess", {
-      titleTranslated: "Remove Challenge Entry",
-    });
-  }
-
-  getUserPortfolio() {
-    return window.location.pathname.split("/")[2];
   }
 }
