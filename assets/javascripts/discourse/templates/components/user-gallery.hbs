@@ -4,8 +4,19 @@
 }}
 
   <div class="user-gallery-container">
+<<<<<<< Updated upstream
     {{#each model.items as |item index|}}
       <UserGalleryItem @item={{item}} @index={{index}} />
+=======
+    {{#each model.userGallery.items as |item index|}}
+      <UserGalleryItem
+        @challenges={{model.challenges}}
+        @item={{item}}
+        @index={{index}}
+        @activity={{model.activity}}
+        @user={{model.userGallery.user}}
+      />
+>>>>>>> Stashed changes
     {{/each}}
   </div>
 {{/load-more}}
