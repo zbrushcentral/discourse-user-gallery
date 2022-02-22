@@ -3,6 +3,7 @@ import Component from "@ember/component";
 import showModal from "discourse/lib/show-modal";
 import discourseComputed from "discourse-common/utils/decorators";
 import { action } from "@ember/object";
+import { withPluginApi } from "discourse/lib/plugin-api";
 
 export default class UserGalleryItemComponent extends Component {
   @discourseComputed("item.topic_slug", "item.topic_id", "item.post_number")
@@ -31,6 +32,15 @@ export default class UserGalleryItemComponent extends Component {
     });
 
     this.set("challengeItems", challengeItems);
+
+    withPluginApi("0.8", (api) => {
+      this.set(
+        "isCurrentUserGallery",
+        api.getCurrentUser().username === this.get("user.username")
+      );
+
+      return;
+    });
   }
   @action
   openChallengeList() {
