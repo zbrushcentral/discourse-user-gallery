@@ -1,24 +1,28 @@
 {{#each challenges as |challenge|}}
-  <div class="active-challenge">
-    <img
-      src={{challenge.thumbnail}}
-      alt="image"
-      class="active-challenge-thumbnail"
-    />
-    {{#if challenge.isClosed}}
-      <div class="trophy-icon">
-        {{d-icon "trophy"}}
+  <div class="challenge-details">
+    <a href="{{zbc_domain}}/challenge-details/{{challenge.id}}">
+      <div class="active-challenge">
+        <img
+          src={{challenge.thumbnail}}
+          alt="image"
+          class="active-challenge-thumbnail"
+        />
+        {{#if challenge.isClosed}}
+          <div class="chess-icon">
+            {{d-icon "trophy"}}
+          </div>
+          <div class="open-text">
+            <span class="open">{{challenge.name}}</span>
+          </div>
+        {{else if challenge.isOpen}}
+          <div class="chess-icon">
+            {{d-icon "chess"}}
+          </div>
+          <div class="open-text">
+            <span class="open">{{challenge.name}}</span>
+          </div>
+        {{/if}}
       </div>
-      <div class="closed-text">
-        <span class="closed">{{challenge.name}}</span>
-      </div>
-    {{else if challenge.isOpen}}
-      <div class="chess-icon">
-        {{d-icon "chess"}}
-      </div>
-      <div class="open-text">
-        <span class="open">{{challenge.name}}</span>
-      </div>
-    {{/if}}
+    </a>
   </div>
 {{/each}}

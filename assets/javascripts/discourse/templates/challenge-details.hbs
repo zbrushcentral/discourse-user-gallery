@@ -1,0 +1,33 @@
+<div class="challenges-list">
+  {{active-challenges-list}}
+</div>
+<div class="challenge-container">
+  <div class="challenge-thumbnail-header">
+    <img
+      src="{{this.model.challenge.thumbnail}}"
+      class="challenge-thumbnail"
+      alt="Challenge Thumbnail"
+    />
+  </div>
+  <div class="row">
+    <h1>{{this.model.challenge.name}} </h1>
+  </div>
+  <Countdown @endDate={{this.model.challenge.end_date}} />
+  <p>
+    {{this.model.challenge.description}}
+  </p>
+  <div class="challenge-links">
+    <p>You must be logged in to enter. Your entry must be an image previously
+      posted in a topic. To enter a
+      <br />
+      new image, first create a topic containing that image.
+      <a href="#">More Info</a>
+    </p>
+    <ChallengeDetails />
+  </div>
+</div>
+<div class="submission-container">
+  {{#each this.model.submissions as |submission|}}
+    <img src={{submission}} class="submisson-image" />
+  {{/each}}
+</div>

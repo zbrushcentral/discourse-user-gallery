@@ -1,4 +1,5 @@
 import Service from "@ember/service";
+import { pixo_domain } from "../utils/const";
 
 export default Service.extend({
   challenges: undefined,
@@ -12,7 +13,7 @@ export default Service.extend({
       return this.get("challenges");
     }
     const res = await fetch(
-      "https://pixologic.com/zbc-challenge/get-challenges.php?max_number=6"
+      `${pixo_domain}/zbc-challenge/get-challenges.php?max_number=6`
     );
     const data = await res.json();
     const keys = Object.keys(data);
