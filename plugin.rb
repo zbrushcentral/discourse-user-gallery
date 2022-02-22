@@ -6,12 +6,23 @@
 # url: https://github.com/wishspinner
 
 
-register_asset "stylesheets/common/discourse-user-gallery.scss"
+register_asset "stylesheets/common/discourse-user-gallery.scss" 
 register_asset "stylesheets/common/active-challenges.scss"
+register_asset "stylesheets/common/challenge-details.scss"
+register_asset "stylesheets/common/countdown.scss"
+
 register_svg_icon "trophy" if respond_to?(:register_svg_icon)
 register_svg_icon "chess" if respond_to?(:register_svg_icon)
 
+
+
 enabled_site_setting :discourse_user_gallery_enabled
+
+register_svg_icon "trophy" if respond_to?(:register_svg_icon)
+register_svg_icon "chess" if respond_to?(:register_svg_icon)
+
+
+
 
 after_initialize do
 
@@ -24,6 +35,8 @@ after_initialize do
     end
   end
 
+
   require_dependency "application_controller"
   Dir[File.dirname(__FILE__) + '/app/**/*.rb'].each {|file| require file }
 end
+

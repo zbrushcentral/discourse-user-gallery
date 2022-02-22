@@ -1,0 +1,18 @@
+{{#d-modal-body class="challenge-submission-modal"}}
+  Are you sure you want to remove this image from the challenge?
+
+  <div>
+    <button
+      {{action "confirmRemoveSubmission" model.postId}}
+      id="submissionRemovalConfrimation"
+      data-post-id={{model.postId}}
+      class="btn-primary btn btn-text ember-view"
+    >Yes</button>
+    <button
+      {{action "closeModal"}}
+      id="closeModalSubmission"
+      class="button-success btn btn-text ember-view"
+    >No</button>
+  </div>
+
+{{/d-modal-body}}

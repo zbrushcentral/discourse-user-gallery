@@ -1,9 +1,4 @@
 import Component from "@ember/component";
-import { action } from "@ember/object";
-import discourseComputed, {
-  on,
-  observes,
-} from "discourse-common/utils/decorators";
 import { inject } from "@ember/service";
 
 export default Component.extend({
