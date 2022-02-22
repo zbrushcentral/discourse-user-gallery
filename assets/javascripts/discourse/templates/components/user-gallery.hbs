@@ -10,6 +10,7 @@
         @item={{item}}
         @index={{index}}
         @activity={{model.activity}}
+        @user={{model.userGallery.user}}
       />
     {{/each}}
   </div>
@@ -21,4 +22,4 @@
     }}</div>
 {{/if}}
 
-{{conditional-loading-spinner condition=model.userGallery.loading}}
+{{conditional-loading-spinner condition=model.loading}}

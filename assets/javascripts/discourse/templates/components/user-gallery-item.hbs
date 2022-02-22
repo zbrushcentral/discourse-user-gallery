@@ -21,8 +21,11 @@
         {{/each}}
       </ul></div>
   {{/if}}
-  <div class="open-challenge-list" {{on "click" this.openChallengeList}}><a
-    >+</a></div>
+  {{#if isCurrentUserGallery}}
+    <div class="open-challenge-list" {{on "click" this.openChallengeList}}>
+      <a>+</a>
+    </div>
+  {{/if}}
   <a href="{{postUrl}}"><img src="{{item.thumb_url}}" /><div
       class="gallery-title"
     >{{item.topic_title}}</div></a>
