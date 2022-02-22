@@ -1,20 +1,13 @@
 import { postUrl } from "discourse/lib/utilities";
-import discourseComputed from "discourse-common/utils/decorators";
-<<<<<<< Updated upstream
 import Component from "@ember/component";
-=======
+import showModal from "discourse/lib/show-modal";
+import discourseComputed from "discourse-common/utils/decorators";
 import { action } from "@ember/object";
-import { withPluginApi } from "discourse/lib/plugin-api";
->>>>>>> Stashed changes
 
-export default Component.extend({
+export default class UserGalleryItemComponent extends Component {
   @discourseComputed("item.topic_slug", "item.topic_id", "item.post_number")
   postUrl(slug, topicId, postNumber) {
     return postUrl(slug, topicId, postNumber);
-<<<<<<< Updated upstream
-  },
-});
-=======
   }
 
   willRender() {
@@ -38,15 +31,6 @@ export default Component.extend({
     });
 
     this.set("challengeItems", challengeItems);
-
-    withPluginApi("0.8", (api) => {
-      this.set(
-        "isCurrentUserGallery",
-        api.getCurrentUser().username === this.get("user.username")
-      );
-
-      return;
-    });
   }
   @action
   openChallengeList() {
@@ -87,4 +71,3 @@ export default Component.extend({
     });
   }
 }
->>>>>>> Stashed changes
