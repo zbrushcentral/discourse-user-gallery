@@ -23,11 +23,11 @@
       new image, first create a topic containing that image.
       <a href="#">More Info</a>
     </p>
-    <ChallengeDetails />
+    <ChallengeDescription />
   </div>
 </div>
 <div class="submission-container">
   {{#each this.model.submissions as |submission|}}
-    <img src={{submission}} class="submisson-image" />
+    <ChallengeSubmission @id={{submission.id}} @submission={{submission.src}} />
   {{/each}}
 </div>
