@@ -16,14 +16,30 @@ export default Ember.Route.extend({
     const response = await fetch(url).then((res) => res.json());
 
     const posts = response.post_stream.posts;
-    const submissions = [];
+    const submissionsSrc = [];
+    const submissionId = [];
+
     for (let i = 0; i < posts.length; i++) {
+      const postId = posts[i].id;
       const $cooked = $(posts[i].cooked);
       const $img = $cooked.find("img");
       const src = $img.attr("src");
+      submissionId.push(postId);
       if (src) {
-        submissions.push(src);
+        submissionsSrc.push(src);
       }
+    }
+    const item = submissionId.map((id, index) => {
+      index -= 1;
+      return {
+        id: id,
+        src: submissionsSrc[index],
+      };
+    });
+    const submissions = [];
+    for (let i = 1; i < item.length; i++) {
+      submissions.push(item[i]);
+      console.log(submissions);
     }
     return { challenge, submissions };
   },
