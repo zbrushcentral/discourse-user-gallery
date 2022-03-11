@@ -9,11 +9,10 @@ export default class ChallengeSubmission extends Component {
   @action
   openSubmissionModal() {
     const submission = this.get("submission");
-    const id = this.get("id");
-
+    const username = submission.username;
     showModal("challengeDetailsSubmissionModal", {
-      titleTranslated: "Like",
-      model: { submission, id },
+      titleTranslated: username,
+      model: submission,
     });
   }
 }

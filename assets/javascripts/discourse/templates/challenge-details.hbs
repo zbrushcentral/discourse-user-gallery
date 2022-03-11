@@ -28,6 +28,6 @@
 </div>
 <div class="submission-container">
   {{#each this.model.submissions as |submission|}}
-    <ChallengeSubmission @id={{submission.id}} @submission={{submission.src}} />
+    <ChallengeSubmission @submission={{submission}} />
   {{/each}}
 </div>
