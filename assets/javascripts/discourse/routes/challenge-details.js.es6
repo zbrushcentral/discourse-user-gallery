@@ -1,6 +1,7 @@
 import { Route } from "@ember/routing/route";
 import { zbc_domain } from "../utils/const";
 import { pixo_domain } from "../utils/const";
+import Post from "discourse/models/post";
 
 export default Ember.Route.extend({
   async model(params) {
@@ -19,16 +20,13 @@ export default Ember.Route.extend({
     const submissions = [];
 
     for (let i = 0; i < posts.length; i++) {
-      const id = posts[i].id;
-      const likes = posts[i].post_likes;
-      const $cooked = $(posts[i].cooked);
+      const post = Post.create(posts[i]);
+      const $cooked = $(post.cooked);
       const $img = $cooked.find("img");
       const src = $img.attr("src");
-      const username = posts[i].username;
-      const action = posts[i].actions_summary.find((action) => action.id === 2);
 
       if (src) {
-        submissions.push({ id, username, src, likes: action.count || 0 });
+        submissions.push({ post, src });
       }
     }
 
