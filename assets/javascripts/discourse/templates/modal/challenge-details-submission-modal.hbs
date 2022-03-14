@@ -1,7 +1,11 @@
 {{#d-modal-body class="challenge-details-submission-modal"}}
   <span class="like-count">
-    <span class="value">{{model.likes}}</span>
-    <span {{action "handleLikes"}}>{{d-icon "heart"}}</span>
+    <span class="value">{{model.post.likeAction.count}}</span>
+    {{#if model.post.likeAction.acted}}
+      <span {{action "toggleLike"}} style="color: red">{{d-icon "heart"}}</span>
+    {{else}}
+      <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+    {{/if}}
   </span>
   <img src={{model.src}} alt="submission" class="submission-image" />
 {{/d-modal-body}}
