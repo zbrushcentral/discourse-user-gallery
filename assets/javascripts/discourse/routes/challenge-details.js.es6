@@ -21,12 +21,13 @@ export default Ember.Route.extend({
 
     for (let i = 0; i < posts.length; i++) {
       const post = Post.create(posts[i]);
+      const username = post.username;
       const $cooked = $(post.cooked);
       const $img = $cooked.find("img");
       const src = $img.attr("src");
 
       if (src) {
-        submissions.push({ post, src });
+        submissions.push({ post, src, username });
       }
     }
 
