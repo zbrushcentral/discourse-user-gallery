@@ -7,5 +7,12 @@
       <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
     {{/if}}
   </span>
-  <img src={{model.src}} alt="submission" class="submission-image" />
+  <div class="container-image">
+    {{#if model.post.likeAction.acted}}
+      <span {{action "toggleLike"}} style="color: red">{{d-icon "heart"}}</span>
+    {{else}}
+      <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+    {{/if}}
+    <img src={{model.src}} alt="submission" class="submission-image" />
+  </div>
 {{/d-modal-body}}
