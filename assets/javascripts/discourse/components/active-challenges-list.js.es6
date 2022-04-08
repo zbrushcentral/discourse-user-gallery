@@ -15,6 +15,7 @@ export default Component.extend({
 
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
+    console.log("this is Challenges", challenges);
     this.set("challenges", challenges);
   },
 });
