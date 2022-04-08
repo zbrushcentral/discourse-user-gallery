@@ -14,7 +14,12 @@ export default Ember.Route.extend({
     const topic = challenge.topic;
 
     const url = `${zbc_domain}/t/${topic}/posts.json`;
+    const urls = `${zbc_domain}/t/${id}.json`;
+
     const response = await fetch(url).then((res) => res.json());
+    const responses = await fetch(urls).then((res) => res.json());
+    const topics = responses;
+    console.log(topics);
 
     const posts = response.post_stream.posts;
     const submissions = [];
@@ -27,7 +32,7 @@ export default Ember.Route.extend({
       const src = $img.attr("src");
 
       if (src) {
-        submissions.push({ post, src, username });
+        submissions.push({ post, src, username, topics });
       }
     }
 
