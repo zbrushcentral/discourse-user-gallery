@@ -13,7 +13,13 @@
     {{else}}
       <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
     {{/if}}
-    <img src={{model.src}} alt="submission" class="submission-image" />
+    <img
+      src={{model.topics.image_url}}
+      alt="submission"
+      class="submission-image"
+    />
   </div>
   <p>{{model.username}}</p>
+  <span class="value">{{model.topics.views}}</span>
+  <span>{{d-icon "far-eye"}}</span>
 {{/d-modal-body}}
