@@ -14,12 +14,16 @@
       <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
     {{/if}}
     <img
-      src={{model.topics.image_url}}
+      src="https://www3.zbrushcentral.com/uploads/default/original/4X/4/0/f/40fda505405848c46717ed9db91c02fe57ed9d5d.jpeg"
       alt="submission"
       class="submission-image"
     />
   </div>
   <p>{{model.username}}</p>
   <span class="value">{{model.topics.views}}</span>
-  <span>{{d-icon "far-eye"}}</span>
+  <span class="views-icon">{{d-icon "far-eye"}}</span>
+  <span class="commented">{{model.topics.post_stream.posts[0].topic_slug}}</span>
+  <textarea class="comments"></textarea>
+  <button type="submit">{{d-icon "reply"</button>
+
 {{/d-modal-body}}

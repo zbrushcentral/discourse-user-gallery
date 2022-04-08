@@ -19,10 +19,11 @@ export default Ember.Route.extend({
     const response = await fetch(url).then((res) => res.json());
     const responses = await fetch(urls).then((res) => res.json());
     const topics = responses;
-    console.log(topics);
+    // console.log(topics);
 
     const posts = response.post_stream.posts;
     const submissions = [];
+    console.log("this is posts ", posts);
 
     for (let i = 0; i < posts.length; i++) {
       const post = Post.create(posts[i]);
