@@ -5,30 +5,44 @@
         <div class="container-top-like">
           <span class="like-value">{{model.topic.like_count}}</span>
           {{#if model.topic.liked.acted}}
-            <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+            <span {{action "toggleLike"}} class="liked-heart">{{d-icon
+                "heart"
+              }}</span>
           {{else}}
-            <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
+            <span {{action "toggleLike"}} class="unliked-heart">{{d-icon
+                "far-heart"
+              }}</span>
           {{/if}}
         </div>
         <img src={{model.src}} alt="submission" class="submission-image" />
       </div>
-      <div class="container-bottom-like">
-        <span class="like-value">{{model.topic.like_count}}</span>
-        {{#if model.topic.liked.acted}}
-          <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
-        {{else}}
-          <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
-        {{/if}}
-      </div>
-    </div>
-    <div class="container-username">
-      <p class="username">{{model.username}}</p>
     </div>
     <div class="container-meta">
+      <div class="container-username">
+        <span class="avatar"></span>
+        <p class="username">{{model.username}}</p>
+      </div>
       <span class="views-value">{{model.topic.views}}</span>
       <span class="views-icon">{{d-icon "far-eye"}}</span>
       <span class="comments-icon">{{d-icon "far-comment"}}</span>
       <span class="comments-value">{{model.topic.posts_count}}</span>
+      <div class="container-bottom-like">
+        <span class="like-value">{{model.topic.like_count}}</span>
+        {{#if model.topic.liked.acted}}
+          <span {{action "toggleLike"}} class="liked-heart">{{d-icon
+              "heart"
+            }}</span>
+        {{else}}
+          <span {{action "toggleLike"}} class="unliked-heart">{{d-icon
+              "far-heart"
+            }}</span>
+        {{/if}}
+      </div>
+    </div>
+    <div class="container-right">
+      <span class="topic-title">
+        {{model.topic.title}}
+      </span>
     </div>
   </div>
 
