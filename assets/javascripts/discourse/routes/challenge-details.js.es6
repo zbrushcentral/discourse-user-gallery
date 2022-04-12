@@ -1,6 +1,7 @@
 import { Route } from "@ember/routing/route";
 import { zbc_domain } from "../utils/const";
 import { pixo_domain } from "../utils/const";
+import Topic from "discourse/models/topic";
 import Post from "discourse/models/post";
 
 export default Ember.Route.extend({
@@ -11,31 +12,21 @@ export default Ember.Route.extend({
       `${pixo_domain}/zbc-challenge/get-challenge.php?id=${id}`
     );
     const challenge = await res.json();
-    const topic = challenge.topic;
 
-    const url = `${zbc_domain}/t/${topic}/posts.json`;
-    const urls = `${zbc_domain}/t/${id}.json`;
+    const challengeUrl = `${zbc_domain}/c/${challenge.category_slug}/${challenge.category_id}.json`;
+    const response = await fetch(challengeUrl).then((res) => res.json());
+    const topics = response.topic_list.topics;
+    topics.shift();
 
-    const response = await fetch(url).then((res) => res.json());
-    const responses = await fetch(urls).then((res) => res.json());
-    const topics = responses;
-    // console.log(topics);
-
-    const posts = response.post_stream.posts;
-    const submissions = [];
-    console.log("this is posts ", posts);
-
-    for (let i = 0; i < posts.length; i++) {
-      const post = Post.create(posts[i]);
-      const username = post.username;
-      const $cooked = $(post.cooked);
-      const $img = $cooked.find("img");
-      const src = $img.attr("src");
-
-      if (src) {
-        submissions.push({ post, src, username, topics });
-      }
-    }
+    const submissions = topics.map((topic) => {
+      const src = topic.image_url;
+      const username = topic.last_poster_username;
+      const posts = topic.posters;
+      const post = posts.map((post) => {
+        post;
+      });
+      return { src, username, topic, post };
+    });
 
     return { challenge, submissions };
   },

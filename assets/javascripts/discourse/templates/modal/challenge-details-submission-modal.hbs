@@ -1,29 +1,25 @@
 {{#d-modal-body class="challenge-details-submission-modal"}}
-  <span class="like-count">
-    <span class="value">{{model.post.likeAction.count}}</span>
-    {{#if model.post.likeAction.acted}}
-      <span {{action "toggleLike"}} style="color: red">{{d-icon "heart"}}</span>
+  <span class="liked">
+    <span class="like-value">{{model.topic.like_count}}</span>
+    {{#if model.topic.liked.acted}}
+      <span {{action "toggleLike"}} >{{d-icon "heart"}}</span>
     {{else}}
-      <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+      <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
     {{/if}}
   </span>
   <div class="container-image">
-    {{#if model.post.likeAction.acted}}
-      <span {{action "toggleLike"}} style="color: red">{{d-icon "heart"}}</span>
+    {{#if model.topic.liked.acted}}
+      <span {{action "toggleLike"}} >{{d-icon "heart"}}</span>
     {{else}}
-      <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+      <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
     {{/if}}
-    <img
-      src="https://www3.zbrushcentral.com/uploads/default/original/4X/4/0/f/40fda505405848c46717ed9db91c02fe57ed9d5d.jpeg"
-      alt="submission"
-      class="submission-image"
-    />
+    <img src={{model.src}} alt="submission" class="submission-image" />
   </div>
-  <p>{{model.username}}</p>
-  <span class="value">{{model.topics.views}}</span>
+  <span class="views-value">{{model.topic.views}}</span>
   <span class="views-icon">{{d-icon "far-eye"}}</span>
-  <span class="commented">WOW, great job on this one!</span>
-  <textarea class="comments"></textarea>
-  <button type="submit">{{d-icon "reply"}}</button>
+  <span class="comments-icon">{{d-icon "far-comment"}}</span>
+  <span class="comments-value">{{model.topic.posts_count}}</span>
+
+  <p class="username">{{model.username}}</p>
 
 {{/d-modal-body}}
