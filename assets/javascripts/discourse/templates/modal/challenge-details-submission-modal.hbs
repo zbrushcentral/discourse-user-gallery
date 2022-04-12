@@ -1,25 +1,35 @@
 {{#d-modal-body class="challenge-details-submission-modal"}}
-  <span class="liked">
-    <span class="like-value">{{model.topic.like_count}}</span>
-    {{#if model.topic.liked.acted}}
-      <span {{action "toggleLike"}} >{{d-icon "heart"}}</span>
-    {{else}}
-      <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
-    {{/if}}
-  </span>
-  <div class="container-image">
-    {{#if model.topic.liked.acted}}
-      <span {{action "toggleLike"}} >{{d-icon "heart"}}</span>
-    {{else}}
-      <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
-    {{/if}}
-    <img src={{model.src}} alt="submission" class="submission-image" />
+  <div class="container-full">
+    <div class="container-left">
+      <div class="container-image">
+        <div class="container-top-like">
+          <span class="like-value">{{model.topic.like_count}}</span>
+          {{#if model.topic.liked.acted}}
+            <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+          {{else}}
+            <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
+          {{/if}}
+        </div>
+        <img src={{model.src}} alt="submission" class="submission-image" />
+      </div>
+      <div class="container-bottom-like">
+        <span class="like-value">{{model.topic.like_count}}</span>
+        {{#if model.topic.liked.acted}}
+          <span {{action "toggleLike"}}>{{d-icon "heart"}}</span>
+        {{else}}
+          <span {{action "toggleLike"}}>{{d-icon "far-heart"}}</span>
+        {{/if}}
+      </div>
+    </div>
+    <div class="container-username">
+      <p class="username">{{model.username}}</p>
+    </div>
+    <div class="container-meta">
+      <span class="views-value">{{model.topic.views}}</span>
+      <span class="views-icon">{{d-icon "far-eye"}}</span>
+      <span class="comments-icon">{{d-icon "far-comment"}}</span>
+      <span class="comments-value">{{model.topic.posts_count}}</span>
+    </div>
   </div>
-  <span class="views-value">{{model.topic.views}}</span>
-  <span class="views-icon">{{d-icon "far-eye"}}</span>
-  <span class="comments-icon">{{d-icon "far-comment"}}</span>
-  <span class="comments-value">{{model.topic.posts_count}}</span>
-
-  <p class="username">{{model.username}}</p>
 
 {{/d-modal-body}}
