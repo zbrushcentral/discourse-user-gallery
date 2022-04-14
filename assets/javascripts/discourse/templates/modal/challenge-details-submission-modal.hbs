@@ -14,7 +14,31 @@
               }}</span>
           {{/if}}
         </div>
-        <img src={{model.src}} alt="submission" class="submission-image" />
+        <div class="lightbox-wrapper"><a
+            class="lightbox"
+            href={{model.src}}
+            data-download-href={{model.src}}
+            title="Ocean"
+          ><img
+              src={{model.src}}
+              alt="Ocean"
+              data-base62-sha1="sFhTxX5rnYbKv0QbCiVLUAoYvDK"
+              width="1200"
+              height="1500"
+              srcset="{{model.src}} , {{model.src}}  1.5x, {{model.src}}  2x"
+              data-small-upload={{model.src}}
+            /><div class="meta">
+              <svg
+                class="fa d-icon d-icon-far-image svg-icon"
+                aria-hidden="true"
+              ><use href="#far-image"></use></svg><span class="filename">
+                {{model.topic.title}}</span><span class="informations">1600×2000
+                865 KB</span><svg
+                class="fa d-icon d-icon-discourse-expand svg-icon"
+                aria-hidden="true"
+              ><use href="#discourse-expand"></use></svg>
+            </div></a></div>
+
       </div>
     </div>
     <div class="container-meta">
@@ -43,6 +67,7 @@
       <span class="topic-title">
         {{model.topic.title}}
       </span>
+      <SubmissionComments @topic={{model.topicId}} />
     </div>
   </div>
 
