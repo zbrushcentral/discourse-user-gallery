@@ -75,40 +75,51 @@
   {{#each model.posts as |comment index|}}
     <div class="container-comments" id="container-{{index}}">
 
-      <div class="topic-avatar"><a
+      <div class="topic-avatar" id="avatar-{{index}}"><a
           class="trigger-user-card main-avatar"
           href="/u/{{comment.username}}"
           data-user-card={{comment.username}}
           aria-hidden="true"
         ><img
-            alt=""
+            alt="{{comment.username}}'s Avatar"
             width="45"
             height="45"
             size="45"
             src={{comment.avatar_template}}
+            id="avatar-{{index}}"
             class="avatar"
           /></a><div class="poster-avatar-extra"></div></div>
 
-      <div class="comment-username">{{comment.username}}</div>
+      <div
+        class="comment-username"
+        id="username-{{index}}"
+      >{{comment.username}}</div>
       <div id="comment-cooked-{{index}}" class="comment-cooked">{{html-safe
           comment.cooked
         }}</div>
-    </div>
-    {{#if comment.likeAction.count}}
-      <span class="comment-like-value">{{comment.likeAction.count}}</span>
-    {{else}}
-      <span class="comment-like-value">0</span>
-    {{/if}}
+      {{#if comment.likeAction.count}}
+        <span
+          class="comment-like-value"
+          id="like-value{{index}}"
+        >{{comment.likeAction.count}}</span>
+      {{else}}
+        <span class="comment-like-value" id="like-value-{{index}}">0</span>
+      {{/if}}
 
-    {{#if comment.likeAction.acted}}
-      <span {{action "removeLike"}} class="comment-liked-heart">{{d-icon
-          "heart"
-        }}</span>
-    {{else}}
-      <span {{action "addLike"}} class="comment-unliked-heart">{{d-icon
-          "far-heart"
-        }}</span>
-    {{/if}}
+      {{#if comment.likeAction.acted}}
+        <span
+          {{action "removeLike"}}
+          id="like-heart-{{index}}"
+          class="comment-liked-heart"
+        >{{d-icon "heart"}}</span>
+      {{else}}
+        <span
+          {{action "addLike"}}
+          id="like-heart-{{index}}"
+          class="comment-unliked-heart"
+        >{{d-icon "far-heart"}}</span>
+      {{/if}}
+    </div>
   {{/each}}
   <div class="input-container">
     <div class="your-comment">Your Comment:</div>
