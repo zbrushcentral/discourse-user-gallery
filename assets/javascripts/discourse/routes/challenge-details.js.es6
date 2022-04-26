@@ -1,6 +1,6 @@
 import { Route } from "@ember/routing/route";
 import { zbc_domain, pixo_domain } from "../utils/const";
-// import Post from "discourse/models/post";
+
 
 export default Ember.Route.extend({
   async model(params) {
@@ -15,13 +15,11 @@ export default Ember.Route.extend({
     const response = await fetch(challengeUrl).then((res) => res.json());
     const topics = response.topic_list.topics;
 
-    // topics.shift();
     const submissions = topics.map((topic) => {
       const topicId = topic.id;
       const src = topic.image_url;
 
-      const username = topic.last_poster_username;
-      return { src, username, topic, topicId };
+      return { src, topic, topicId };
     });
 
     return { challenge, submissions };

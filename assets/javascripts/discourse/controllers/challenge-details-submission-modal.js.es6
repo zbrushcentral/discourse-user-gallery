@@ -1,9 +1,33 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
+import { ajax } from "discourse/lib/ajax";
+import { popupAjaxError } from "discourse/lib/ajax-error";
 
-export default class ChallengeSubmissionModalController extends Controller {
+export default class ChallengeDetailsSubmissionModalController extends Controller {
   @action
-  async toggleLike() {
-    this.get("model.topic.likeAction").toggle(this.get("model.topic"));
+  addLike() {
+    const postId = this.get("model.post.id");
+    ajax("/post_actions", {
+      type: "POST",
+      data: {
+        id: postId,
+        post_action_type_id: 2,
+      },
+      returnXHR: true,
+    }).catch(function (error) {
+      popupAjaxError(error);
+    });
+  }
+  @action
+  removeLike() {
+    const postId = this.get("model.post.id");
+    ajax("/post_actions/" + postId, {
+      type: "DELETE",
+      data: {
+        post_action_type_id: 2,
+      },
+    }).catch(function (error) {
+      popupAjaxError(error);
+    });
   }
 }
