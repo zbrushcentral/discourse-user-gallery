@@ -18,12 +18,12 @@ export default class ChallengeSubmission extends Component {
     );
     const posts = resp.post_stream.posts;
 
+    const topicPost = posts.shift();
+
     for (let i = 0; i < posts.length; i++) {
       const post = Post.create(posts[i]);
-      // Topic only has last_posted_username
-      const submissionUsername = posts[0].username;
 
-      this.get("submissionUsername");
+      this.get("topicPost");
       this.get("post");
       showModal("challengeDetailsSubmissionModal", {
         titleTranslated: title,
@@ -31,8 +31,8 @@ export default class ChallengeSubmission extends Component {
           submission,
           posts,
           post,
-          submissionUsername,
           postCount,
+          topicPost,
         },
       });
     }
