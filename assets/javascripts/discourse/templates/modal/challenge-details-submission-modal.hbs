@@ -3,8 +3,7 @@
     <div class="container-left">
       <div class="container-image">
         <div class="container-top-like">
-          <span class="like-value">{{model.submission.topic.like_count}}</span>
-          {{#if model.submission.topic.liked.acted}}
+          {{#if model.topicPost.likeAction.acted}}
             <span {{action "removeLike"}} class="liked-heart">{{d-icon
                 "heart"
               }}</span>
@@ -18,10 +17,10 @@
             class="lightbox"
             href={{model.submission.src}}
             data-download-href={{model.submission.src}}
-            title="Ocean"
+            title={{model.submission.title}}
           ><img
               src={{model.submission.src}}
-              alt="Ocean"
+              alt={{model.submission.title}}
               data-base62-sha1="sFhTxX5rnYbKv0QbCiVLUAoYvDK"
               width="1200"
               height="1500"
@@ -44,8 +43,22 @@
     </div>
     <div class="container-meta">
       <div class="container-username">
-        <span class="avatar"></span>
-        <p class="username">{{model.submissionUsername}}</p>
+
+        <div class="topic-avatar"><a
+            class="trigger-user-card main-avatar"
+            href="/u/{{model.topicPost.username}}"
+            data-user-card={{model.topicPost.username}}
+            aria-hidden="true"
+          ><img
+              alt="{{model.topicPost.username}}'s Avatar"
+              width="45"
+              height="45"
+              size="45"
+              src={{model.topicPost.avatar_template}}
+              class="avatar"
+            /></a><div class="poster-avatar-extra"></div>
+        </div>
+        <p class="username">{{model.topicPost.username}}</p>
       </div>
       <span class="views-value">{{model.submission.topic.views}}</span>
       <span class="views-icon">{{d-icon "far-eye"}}</span>
@@ -53,7 +66,7 @@
       <span class="comments-value">{{model.postCount}}</span>
       <div class="container-bottom-like">
         <span class="like-value">{{model.submission.topic.like_count}}</span>
-        {{#if model.submission.topic.liked.acted}}
+        {{#if model.topicPost.likedAction.acted}}
           <span {{action "removeLike"}} class="liked-heart">{{d-icon
               "heart"
             }}</span>
@@ -69,64 +82,53 @@
         {{model.submission.topic.title}}
       </span>
 
+      {{#each model.posts as |comment index|}}
+        <div class="container-comments" id="container-{{index}}">
+
+          <div
+            class="comment-username"
+            id="username-{{index}}"
+          >{{comment.username}}</div>
+          <div id="comment-cooked-{{index}}" class="comment-cooked">{{html-safe
+              comment.cooked
+            }}</div>
+          {{#if comment.likeAction.count}}
+            <span
+              class="comment-like-value"
+              id="like-value{{index}}"
+            >{{comment.likeAction.count}}</span>
+          {{else}}
+            <span class="comment-like-value" id="like-value-{{index}}">0</span>
+          {{/if}}
+
+          {{#if comment.likeAction.acted}}
+            <span
+              {{action "removeLike"}}
+              id="like-heart-{{index}}"
+              class="comment-liked-heart"
+            >{{d-icon "heart"}}</span>
+          {{else}}
+            <span
+              {{action "addLike"}}
+              id="like-heart-{{index}}"
+              class="comment-unliked-heart"
+            >{{d-icon "far-heart"}}</span>
+          {{/if}}
+        </div>
+      {{/each}}
+      <div class="input-container">
+        <div class="comment-text">Your Comment:</div>
+        <textarea
+          name="comment-input"
+          id="input"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button type="submit" class="comment-button">{{d-icon
+            "caret-right"
+          }}</button>
+      </div>
     </div>
-  </div>
-
-  {{#each model.posts as |comment index|}}
-    <div class="container-comments" id="container-{{index}}">
-
-      <div class="topic-avatar" id="avatar-{{index}}"><a
-          class="trigger-user-card main-avatar"
-          href="/u/{{comment.username}}"
-          data-user-card={{comment.username}}
-          aria-hidden="true"
-        ><img
-            alt="{{comment.username}}'s Avatar"
-            width="45"
-            height="45"
-            size="45"
-            src={{comment.avatar_template}}
-            id="avatar-{{index}}"
-            class="avatar"
-          /></a><div class="poster-avatar-extra"></div></div>
-
-      <div
-        class="comment-username"
-        id="username-{{index}}"
-      >{{comment.username}}</div>
-      <div id="comment-cooked-{{index}}" class="comment-cooked">{{html-safe
-          comment.cooked
-        }}</div>
-      {{#if comment.likeAction.count}}
-        <span
-          class="comment-like-value"
-          id="like-value{{index}}"
-        >{{comment.likeAction.count}}</span>
-      {{else}}
-        <span class="comment-like-value" id="like-value-{{index}}">0</span>
-      {{/if}}
-
-      {{#if comment.likeAction.acted}}
-        <span
-          {{action "removeLike"}}
-          id="like-heart-{{index}}"
-          class="comment-liked-heart"
-        >{{d-icon "heart"}}</span>
-      {{else}}
-        <span
-          {{action "addLike"}}
-          id="like-heart-{{index}}"
-          class="comment-unliked-heart"
-        >{{d-icon "far-heart"}}</span>
-      {{/if}}
-    </div>
-  {{/each}}
-  <div class="input-container">
-    <div class="your-comment">Your Comment:</div>
-    <textarea name="comment-input" id="input" cols="30" rows="10"></textarea>
-    <button type="submit" class="comment-button">{{d-icon
-        "caret-right"
-      }}</button>
   </div>
 
 {{/d-modal-body}}
