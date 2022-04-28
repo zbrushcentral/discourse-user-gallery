@@ -4,11 +4,11 @@
       <div class="container-image">
         <div class="container-top-like">
           {{#if model.topicPost.likeAction.acted}}
-            <span {{action "removeLike"}} class="liked-heart">{{d-icon
+            <span {{action "toggleLike"}} class="liked-heart">{{d-icon
                 "heart"
               }}</span>
           {{else}}
-            <span {{action "addLike"}} class="unliked-heart">{{d-icon
+            <span {{action "toggleLike"}} class="unliked-heart">{{d-icon
                 "far-heart"
               }}</span>
           {{/if}}
@@ -67,11 +67,11 @@
       <div class="container-bottom-like">
         <span class="like-value">{{model.submission.topic.like_count}}</span>
         {{#if model.topicPost.likedAction.acted}}
-          <span {{action "removeLike"}} class="liked-heart">{{d-icon
+          <span {{action "toggleLike"}} class="liked-heart">{{d-icon
               "heart"
             }}</span>
         {{else}}
-          <span {{action "addLike"}} class="unliked-heart">{{d-icon
+          <span {{action "toggleLike"}} class="unliked-heart">{{d-icon
               "far-heart"
             }}</span>
         {{/if}}
@@ -103,13 +103,13 @@
 
           {{#if comment.likeAction.acted}}
             <span
-              {{action "removeLike"}}
+              {{action "toggleLike"}}
               id="like-heart-{{index}}"
               class="comment-liked-heart"
             >{{d-icon "heart"}}</span>
           {{else}}
             <span
-              {{action "addLike"}}
+              {{action "toggleLike"}}
               id="like-heart-{{index}}"
               class="comment-unliked-heart"
             >{{d-icon "far-heart"}}</span>
