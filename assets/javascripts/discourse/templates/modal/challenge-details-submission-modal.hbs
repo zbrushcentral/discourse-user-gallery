@@ -21,24 +21,19 @@
           ><img
               src={{model.submission.src}}
               alt={{model.submission.title}}
-              data-base62-sha1="sFhTxX5rnYbKv0QbCiVLUAoYvDK"
               width="1200"
               height="1500"
-              srcset="{{model.submission.src}} , {{model.submission.src}}  1.5x, {{model.submission.src}}  2x"
               data-small-upload={{model.submission.src}}
             /><div class="meta">
               <svg
                 class="fa d-icon d-icon-far-image svg-icon"
                 aria-hidden="true"
               ><use href="#far-image"></use></svg><span class="filename">
-                {{model.submission.topic.title}}</span><span
-                class="informations"
-              >1600×2000 865 KB</span><svg
+                {{model.submission.topic.title}}</span><svg
                 class="fa d-icon d-icon-discourse-expand svg-icon"
                 aria-hidden="true"
               ><use href="#discourse-expand"></use></svg>
             </div></a></div>
-
       </div>
     </div>
     <div class="container-meta">
@@ -92,6 +87,7 @@
           <div id="comment-cooked-{{index}}" class="comment-cooked">{{html-safe
               comment.cooked
             }}</div>
+
           {{#if comment.likeAction.count}}
             <span
               class="comment-like-value"
@@ -105,8 +101,10 @@
             <span
               {{action "toggleLike"}}
               id="like-heart-{{index}}"
+              style="color: red;"
               class="comment-liked-heart"
             >{{d-icon "heart"}}</span>
+
           {{else}}
             <span
               {{action "toggleLike"}}
@@ -130,5 +128,4 @@
       </div>
     </div>
   </div>
-
 {{/d-modal-body}}

@@ -25,6 +25,7 @@ export default class ChallengeSubmission extends Component {
 
       this.get("topicPost");
       this.get("post");
+      this.get("posts");
       showModal("challengeDetailsSubmissionModal", {
         titleTranslated: title,
         model: {
