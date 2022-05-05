@@ -60,11 +60,13 @@
       <span class="comments-icon">{{d-icon "far-comment"}}</span>
       <span class="comments-value">{{model.postCount}}</span>
       <div class="container-bottom-like">
-        {{#if model.count}}
-          <span class="like-value">{{model.count}}</span>
+
+        {{#if model.submission.topic.like_count}}
+          <span class="like-value"> {{model.count}}</span>
         {{else}}
           <span class="like-value">0</span>
         {{/if}}
+
         {{#if model.liked}}
           <span
             {{action "removeVote"}}
@@ -92,7 +94,7 @@
           <div class="comment-cooked">{{html-safe comment.cooked}}</div>
 
           {{#if comment.likeAction.count}}
-            <span class="comment-like-value">{{comment.likeAction.count}}</span>
+            <span class="comment-like-value">{{model.count}}</span>
           {{else}}
             <span class="comment-like-value">0</span>
           {{/if}}
