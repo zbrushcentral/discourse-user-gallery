@@ -8,18 +8,19 @@ export default class ChallengeSubmission extends Component {
   @action
   async openSubmissionModal() {
     const submission = this.get("submission");
-
     const topicId = submission.topicId;
     const title = submission.topic.title;
-    const postCount = (submission.topic.posts_count -= 1);
+    const postCount = submission.topic.posts_count - 1;
     const postUrl = `${zbc_domain}/t/${topicId}/posts.json`;
     const resp = await fetch(postUrl).then((res) =>
       res.json().then((data) => data)
     );
     const posts = resp.post_stream.posts;
-
     const topicPost = posts.shift();
-
+    const count = topicPost.actions_summary[0].count;
+    const liked = topicPost.actions_summary[0].acted;
+    const unLiked = topicPost.actions_summary[0].can_act;
+    
     for (let i = 0; i < posts.length; i++) {
       const post = Post.create(posts[i]);
 
@@ -30,10 +31,13 @@ export default class ChallengeSubmission extends Component {
         titleTranslated: title,
         model: {
           submission,
-          posts,
           post,
+          posts,
           postCount,
           topicPost,
+          liked,
+          unLiked,
+          count,
         },
       });
     }

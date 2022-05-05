@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import showModal from "discourse/lib/show-modal";
+import { devApiKey } from "../utils/const";
 
 export default class ChallengeSubmissionModalController extends Controller {
   @action
@@ -15,8 +16,7 @@ export default class ChallengeSubmissionModalController extends Controller {
         contentType: "application/json",
         headers: {
           "Api-Username": window.location.pathname.split("/")[2],
-          "Api-Key":
-            "9410ad25edbc853073e7eda513f25f97a2dc2ed6c3f366597296ad1ab0447c15",
+          "Api-Key": devApiKey,
         },
         type: "POST",
         data: JSON.stringify({
@@ -40,5 +40,4 @@ export default class ChallengeSubmissionModalController extends Controller {
       });
     }
   }
-
 }
