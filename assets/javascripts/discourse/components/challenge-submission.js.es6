@@ -17,10 +17,16 @@ export default class ChallengeSubmission extends Component {
     );
     const posts = resp.post_stream.posts;
     const topicPost = posts.shift();
-    const count = topicPost.actions_summary[0].count;
-    const liked = topicPost.actions_summary[0].acted;
-    const unLiked = topicPost.actions_summary[0].can_act;
-    
+
+    const liked =
+      topicPost.actions_summary[0].acted === undefined ? false : true;
+    const unLiked =
+      topicPost.actions_summary[0].can_act === undefined ? false : true;
+    const count =
+      topicPost.actions_summary[0].count > 0
+        ? 0
+        : topicPost.actions_summary[0].count;
+
     for (let i = 0; i < posts.length; i++) {
       const post = Post.create(posts[i]);
 
