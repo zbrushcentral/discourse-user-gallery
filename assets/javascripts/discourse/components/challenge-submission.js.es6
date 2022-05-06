@@ -23,7 +23,8 @@ export default class ChallengeSubmission extends Component {
     const unLiked =
       topicPost.actions_summary[0].can_act === undefined ? false : true;
     const count =
-      topicPost.actions_summary[0].count > 0
+      topicPost.actions_summary[0].count === undefined ||
+      topicPost.actions_summary[0].count === 0
         ? 0
         : topicPost.actions_summary[0].count;
 
