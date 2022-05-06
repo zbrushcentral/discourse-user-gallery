@@ -6,6 +6,4 @@
 export const pixo_domain = "https://pixologic.com";
 export const zbc_domain = "https://www3.zbrushcentral.com";
 export const devApiKey =
-  "8ebc7d0649737ef4d3e79c111a5f16640049907da8c3cf0c536c6b0556d0d45f";
-// export const devApiKey =
-//   "9410ad25edbc853073e7eda513f25f97a2dc2ed6c3f366597296ad1ab0447c15";
+  "4fad8cac97ea48d3f10dea68f74d7f2fdb5574bb719437bffd24d6ea8e1dd359";
