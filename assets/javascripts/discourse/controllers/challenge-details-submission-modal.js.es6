@@ -50,4 +50,17 @@ export default class ChallengeDetailsSubmissionModalController extends Controlle
       }),
     });
   }
+  @action
+  async handelSubmit(value) {
+    this.get("value");
+    const topicId = this.get("model.topicPost.topic_id");
+    await $.ajax(`${zbc_domain}/posts.json`, {
+      contentType: "application/json",
+      type: "POST",
+      data: JSON.stringify({
+        raw: value,
+        topic_id: topicId,
+      }),
+    });
+  }
 }

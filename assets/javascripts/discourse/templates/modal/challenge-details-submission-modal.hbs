@@ -115,18 +115,14 @@
           {{/if}}
         </div>
       {{/each}}
-
       <div class="input-container">
         <div class="comment-text">Your Comment:</div>
-        <textarea
-          name="comment-input"
-          id="input"
-          cols="30"
-          rows="10"
-        ></textarea>
-        <button type="submit" class="comment-button">{{d-icon
-            "caret-right"
-          }}</button>
+        <Textarea @value={{value}} />
+        <button
+          type="submit"
+          {{on "click" (fn this.handelSubmit value)}}
+          class="comment-button"
+        >{{d-icon "caret-right"}}</button>
       </div>
     </div>
   </div>
