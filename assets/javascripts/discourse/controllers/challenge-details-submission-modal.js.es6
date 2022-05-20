@@ -5,53 +5,25 @@ import { zbc_domain } from "../utils/const";
 export default class ChallengeDetailsSubmissionModalController extends Controller {
   @action
   async addVote() {
-    const topicPostId = this.get("model.topicPost.id");
-    await $.ajax(`${zbc_domain}/post_actions`, {
-      contentType: "application/json",
-
-      type: "POST",
-      data: JSON.stringify({
-        id: topicPostId,
-        post_action_type_id: 2,
-      }),
-    });
+    const topicPost = this.get("model.topicPost");
+    topicPost.likeAction.toggle(topicPost);
   }
   @action
   async removeVote() {
-    const topicPostId = this.get("model.topicPost.id");
-    await $.ajax(`${zbc_domain}/post_actions/${topicPostId}`, {
-      contentType: "application/json",
-
-      type: "DELETE",
-      data: JSON.stringify({
-        post_action_type_id: 2,
-      }),
-    });
+    const topicPost = this.get("model.topicPost");
+    topicPost.likeAction.toggle(topicPost);
   }
 
   @action
-  async addLike(commentId = this.model.posts.id) {
-    await $.ajax(`${zbc_domain}/post_actions`, {
-      contentType: "application/json",
-      type: "POST",
-      data: JSON.stringify({
-        id: commentId,
-        post_action_type_id: 2,
-      }),
-    });
+  async addLike(comment) {
+    comment.likeAction.toggle(comment);
   }
   @action
-  async removeLike(commentId = this.model.posts.id) {
-    await $.ajax(`${zbc_domain}/post_actions/${commentId}`, {
-      contentType: "application/json",
-      type: "DELETE",
-      data: JSON.stringify({
-        post_action_type_id: 2,
-      }),
-    });
+  async removeLike(comment) {
+    comment.likeAction.toggle(comment);
   }
   @action
-  async handelSubmit(value) {
+  async submitComment(value) {
     this.get("value");
     const topicId = this.get("model.topicPost.topic_id");
     await $.ajax(`${zbc_domain}/posts.json`, {

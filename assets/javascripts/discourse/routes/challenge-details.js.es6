@@ -1,7 +1,6 @@
 import { Route } from "@ember/routing/route";
 import { zbc_domain, pixo_domain } from "../utils/const";
 
-
 export default Ember.Route.extend({
   async model(params) {
     const { id } = params;
