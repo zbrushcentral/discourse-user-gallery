@@ -3,19 +3,15 @@
     <div class="container-left">
       <div class="container-image">
         <div class="container-top-like">
-          {{#if model.liked}}
+          {{#if model.topicPost.likeAction.acted}}
             <span
               {{action "removeVote"}}
               class="liked-heart"
               style="color: #c0394a;"
             >{{d-icon "heart"}}</span>
-          {{else if model.unLiked}}
-            <span {{action "removeVote"}} class="unliked-heart">{{d-icon
-                "far-heart"
-              }}</span>
           {{else}}
-            <span class="liked-heart" style="color: #c0394a;">{{d-icon
-                "heart"
+            <span {{action "addVote"}} class="unliked-heart">{{d-icon
+                "far-heart"
               }}</span>
 
           {{/if}}
@@ -38,8 +34,7 @@
     </div>
     <div class="container-meta">
       <div class="container-username">
-
-        {{!-- <div class="topic-avatar"><a
+        <div class="topic-avatar"><a
             class="trigger-user-card main-avatar"
             href="/u/{{model.topicPost.username}}"
             data-user-card={{model.topicPost.username}}
@@ -49,10 +44,10 @@
               width="45"
               height="45"
               size="45"
-              src={{model.topicPost.avatar_template}}
+              src={{model.topicPost.avatar}}
               class="avatar"
             /></a><div class="poster-avatar-extra"></div>
-        </div> --}}
+        </div>
         <p class="username">{{model.topicPost.username}}</p>
       </div>
       <span class="views-value">{{model.submission.topic.views}}</span>
@@ -61,27 +56,23 @@
       <span class="comments-value">{{model.postCount}}</span>
       <div class="container-bottom-like">
 
-        {{#if model.submission.topic.like_count}}
+        {{#if model.topicPost.likeAction.count}}
 
           <span class="like-value">
-            {{model.count}}</span>
+            {{model.topicPost.likeAction.count}}</span>
         {{else}}
           <span class="like-value">0</span>
         {{/if}}
 
-        {{#if model.liked}}
+        {{#if model.topicPost.likeAction.acted}}
           <span
             {{action "removeVote"}}
             class="liked-heart"
             style="color: #c0394a;"
           >{{d-icon "heart"}}</span>
-        {{else if model.unLiked}}
+        {{else}}
           <span {{action "addVote"}} class="unliked-heart">{{d-icon
               "far-heart"
-            }}</span>
-        {{else}}
-          <span class="liked-heart" style="color: #c0394a;">{{d-icon
-              "heart"
             }}</span>
         {{/if}}
       </div>
@@ -90,26 +81,29 @@
       <span class="topic-title">
         {{model.submission.topic.title}}
       </span>
-      {{#each model.posts as |comment|}}
+
+      {{#each model.comments as |comment|}}
         <div class="container-comments">
           <div class="comment-username">{{comment.username}}</div>
+
+          <img width="45" height="45" src={{comment.avatar}} class="avatar" />
           <div class="comment-cooked">{{html-safe comment.cooked}}</div>
 
           {{#if comment.likeAction.count}}
-            <span class="comment-like-value">{{model.count}}</span>
+            <span class="comment-like-value">{{comment.likeAction.count}}</span>
           {{else}}
             <span class="comment-like-value">0</span>
           {{/if}}
 
           {{#if comment.likeAction.acted}}
             <span
-              {{on "click" (fn this.removeLike comment.id)}}
+              {{on "click" (fn this.removeLike comment)}}
               style="color:#c0394a;"
               class="comment-liked-heart"
             >{{d-icon "heart"}}</span>
           {{else}}
             <span
-              {{on "click" (fn this.addLike comment.id)}}
+              {{on "click" (fn this.addLike comment)}}
               class="comment-unliked-heart"
             >{{d-icon "far-heart"}}</span>
           {{/if}}
@@ -120,8 +114,8 @@
         <Textarea @value={{value}} />
         <button
           type="submit"
-          {{on "click" (fn this.handelSubmit value)}}
-          class="comment-button"
+          {{on "click" (fn this.submitComment value)}}
+          class="submit-comment-btn"
         >{{d-icon "caret-right"}}</button>
       </div>
     </div>

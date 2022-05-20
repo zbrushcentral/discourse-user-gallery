@@ -15,38 +15,24 @@ export default class ChallengeSubmission extends Component {
     const resp = await fetch(postUrl).then((res) =>
       res.json().then((data) => data)
     );
+
     const posts = resp.post_stream.posts;
-    const topicPost = posts.shift();
 
-    const liked =
-      topicPost.actions_summary[0].acted === undefined ? false : true;
-    const unLiked =
-      topicPost.actions_summary[0].can_act === undefined ? false : true;
-    const count =
-      topicPost.actions_summary[0].count === undefined ||
-      topicPost.actions_summary[0].count === 0
-        ? 0
-        : topicPost.actions_summary[0].count;
+    const comments = posts.map((post) => {
+      const comment = Post.create(post);
+      comment.avatar = post.avatar_template.replace("{size}", "90");
+      return comment;
+    });
+    const topicPost = comments.shift();
 
-    for (let i = 0; i < posts.length; i++) {
-      const post = Post.create(posts[i]);
-
-      this.get("topicPost");
-      this.get("post");
-      this.get("posts");
-      showModal("challengeDetailsSubmissionModal", {
-        titleTranslated: title,
-        model: {
-          submission,
-          post,
-          posts,
-          postCount,
-          topicPost,
-          liked,
-          unLiked,
-          count,
-        },
-      });
-    }
+    showModal("challengeDetailsSubmissionModal", {
+      titleTranslated: title,
+      model: {
+        submission,
+        comments,
+        postCount,
+        topicPost,
+      },
+    });
   }
 }
