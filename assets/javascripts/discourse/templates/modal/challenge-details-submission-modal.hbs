@@ -50,31 +50,33 @@
         </div>
         <p class="username">{{model.topicPost.username}}</p>
       </div>
-      <span class="views-value">{{model.submission.topic.views}}</span>
-      <span class="views-icon">{{d-icon "far-eye"}}</span>
-      <span class="comments-icon">{{d-icon "far-comment"}}</span>
-      <span class="comments-value">{{model.postCount}}</span>
-      <div class="container-bottom-like">
+      <div class="container-topic-meta">
+        <span class="views-value">{{model.submission.topic.views}}</span>
+        <span class="views-icon">{{d-icon "far-eye"}}</span>
+        <span class="comments-icon">{{d-icon "far-comment"}}</span>
+        <span class="comments-value">{{model.postCount}}</span>
+        <div class="container-bottom-like">
 
-        {{#if model.topicPost.likeAction.count}}
+          {{#if model.topicPost.likeAction.count}}
 
-          <span class="like-value">
-            {{model.topicPost.likeAction.count}}</span>
-        {{else}}
-          <span class="like-value">0</span>
-        {{/if}}
+            <span class="like-value">
+              {{model.topicPost.likeAction.count}}</span>
+          {{else}}
+            <span class="like-value">0</span>
+          {{/if}}
 
-        {{#if model.topicPost.likeAction.acted}}
-          <span
-            {{action "removeVote"}}
-            class="liked-heart"
-            style="color: #c0394a;"
-          >{{d-icon "heart"}}</span>
-        {{else}}
-          <span {{action "addVote"}} class="unliked-heart">{{d-icon
-              "far-heart"
-            }}</span>
-        {{/if}}
+          {{#if model.topicPost.likeAction.acted}}
+            <span
+              {{action "removeVote"}}
+              class="liked-heart"
+              style="color: #c0394a;"
+            >{{d-icon "heart"}}</span>
+          {{else}}
+            <span {{action "addVote"}} class="unliked-heart">{{d-icon
+                "far-heart"
+              }}</span>
+          {{/if}}
+        </div>
       </div>
     </div>
     <div class="container-right">
