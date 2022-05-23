@@ -84,33 +84,37 @@
         {{model.submission.topic.title}}
       </span>
 
-      {{#each model.comments as |comment|}}
-        <div class="container-comments">
-          <div class="comment-username">{{comment.username}}</div>
+      <div class="wrap-comments">
+        {{#each model.comments as |comment|}}
+          <div class="container-comments">
+            <div class="comment-username">{{comment.username}}</div>
 
-          <img width="45" height="45" src={{comment.avatar}} class="avatar" />
-          <div class="comment-cooked">{{html-safe comment.cooked}}</div>
+            <img width="45" height="45" src={{comment.avatar}} class="avatar" />
+            <div class="comment-cooked">{{html-safe comment.cooked}}</div>
 
-          {{#if comment.likeAction.count}}
-            <span class="comment-like-value">{{comment.likeAction.count}}</span>
-          {{else}}
-            <span class="comment-like-value">0</span>
-          {{/if}}
+            {{#if comment.likeAction.count}}
+              <span
+                class="comment-like-value"
+              >{{comment.likeAction.count}}</span>
+            {{else}}
+              <span class="comment-like-value">0</span>
+            {{/if}}
 
-          {{#if comment.likeAction.acted}}
-            <span
-              {{on "click" (fn this.removeLike comment)}}
-              style="color:#c0394a;"
-              class="comment-liked-heart"
-            >{{d-icon "heart"}}</span>
-          {{else}}
-            <span
-              {{on "click" (fn this.addLike comment)}}
-              class="comment-unliked-heart"
-            >{{d-icon "far-heart"}}</span>
-          {{/if}}
-        </div>
-      {{/each}}
+            {{#if comment.likeAction.acted}}
+              <span
+                {{on "click" (fn this.removeLike comment)}}
+                style="color:#c0394a;"
+                class="comment-liked-heart"
+              >{{d-icon "heart"}}</span>
+            {{else}}
+              <span
+                {{on "click" (fn this.addLike comment)}}
+                class="comment-unliked-heart"
+              >{{d-icon "far-heart"}}</span>
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
       <div class="input-container">
         <div class="comment-text">Your Comment:</div>
         <Textarea @value={{value}} />
