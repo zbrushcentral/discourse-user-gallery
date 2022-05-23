@@ -112,6 +112,11 @@
                 class="comment-unliked-heart"
               >{{d-icon "far-heart"}}</span>
             {{/if}}
+            <button
+              type="submit"
+              {{on "click" (fn this.removeComment comment)}}
+              class="delete-trash-icon"
+            >{{d-icon "far-trash-alt"}}</button>
           </div>
         {{/each}}
       </div>
