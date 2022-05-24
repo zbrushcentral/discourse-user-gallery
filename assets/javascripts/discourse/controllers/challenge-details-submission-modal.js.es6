@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { zbc_domain } from "../utils/const";
+import Post from "discourse/models/post";
 
 export default class ChallengeDetailsSubmissionModalController extends Controller {
   @action
@@ -34,5 +35,10 @@ export default class ChallengeDetailsSubmissionModalController extends Controlle
         topic_id: topicId,
       }),
     });
+  }
+  @action
+  removeComment(comment) {
+    const post = Post.create(comment);
+    post.destroy(comment);
   }
 }

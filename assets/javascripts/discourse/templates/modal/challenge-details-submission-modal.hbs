@@ -9,6 +9,10 @@
               class="liked-heart"
               style="color: #c0394a;"
             >{{d-icon "heart"}}</span>
+          {{else if model.topicPost.yours}}
+            <span style="color:#c0394a;" class="comment-liked-heart">{{d-icon
+                "heart"
+              }}</span>
           {{else}}
             <span {{action "addVote"}} class="unliked-heart">{{d-icon
                 "far-heart"
@@ -71,6 +75,10 @@
               class="liked-heart"
               style="color: #c0394a;"
             >{{d-icon "heart"}}</span>
+          {{else if model.topicPost.yours}}
+            <span style="color:#c0394a;" class="comment-liked-heart">{{d-icon
+                "heart"
+              }}</span>
           {{else}}
             <span {{action "addVote"}} class="unliked-heart">{{d-icon
                 "far-heart"
@@ -106,11 +114,24 @@
                 style="color:#c0394a;"
                 class="comment-liked-heart"
               >{{d-icon "heart"}}</span>
+            {{else if comment.yours}}
+              <span style="color:#c0394a;" class="comment-liked-heart">{{d-icon
+                  "heart"
+                }}</span>
             {{else}}
               <span
                 {{on "click" (fn this.addLike comment)}}
                 class="comment-unliked-heart"
               >{{d-icon "far-heart"}}</span>
+            {{/if}}
+            {{#if comment.yours}}
+              <button
+                type="submit"
+                {{on "click" (fn this.removeComment comment)}}
+                class="delete-trash-icon"
+                style="color: #c0394a; background:none;"
+              >{{d-icon "far-trash-alt"}}</button>
+            {{else}}
             {{/if}}
           </div>
         {{/each}}
