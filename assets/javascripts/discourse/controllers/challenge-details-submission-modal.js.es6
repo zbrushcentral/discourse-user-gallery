@@ -2,6 +2,7 @@ import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { zbc_domain } from "../utils/const";
 import Post from "discourse/models/post";
+import { reload } from "discourse/helpers/page-reloader";
 
 export default class ChallengeDetailsSubmissionModalController extends Controller {
   @action
@@ -35,10 +36,13 @@ export default class ChallengeDetailsSubmissionModalController extends Controlle
         topic_id: topicId,
       }),
     });
+    this.set("value", "Message sent!");
+    reload();
   }
   @action
   removeComment(comment) {
     const post = Post.create(comment);
     post.destroy(comment);
+    reload();
   }
 }

@@ -13,12 +13,15 @@ export default Ember.Route.extend({
     const challengeUrl = `${zbc_domain}/c/${challenge.category_slug}/${challenge.category_id}.json`;
     const response = await fetch(challengeUrl).then((res) => res.json());
     const topics = response.topic_list.topics;
+    //this is the first topic that is about the category
+    const aboutCategory = topics.shift();
 
     const submissions = topics.map((topic) => {
       const topicId = topic.id;
       const src = topic.image_url;
+      const views = topic.views;
 
-      return { src, topic, topicId };
+      return { src, topic, topicId, views };
     });
 
     return { challenge, submissions };
