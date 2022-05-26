@@ -5,12 +5,23 @@ import { zbc_domain } from "../utils/const";
 import Post from "discourse/models/post";
 
 export default class ChallengeSubmission extends Component {
-  @action
-  async openSubmissionModal() {
+  async topicViews() {
     const submission = this.get("submission");
     const topicId = submission.topicId;
-    const title = submission.topic.title;
-    const postCount = submission.topic.posts_count - 1;
+    const res = await fetch(
+      `${zbc_domain}/t/${topicId}.json?track_visit=true&forceLoad=true`
+    );
+    const data = res.json();
+    return data;
+  }
+
+  @action
+  async openSubmissionModal() {
+    this.topicViews();
+    const topicId = this.submission.topicId;
+    const submission = this.get("submission");
+    const title = this.submission.topic.title;
+    const postCount = this.submission.topic.posts_count - 1;
     const postUrl = `${zbc_domain}/t/${topicId}/posts.json`;
     const resp = await fetch(postUrl).then((res) =>
       res.json().then((data) => data)
