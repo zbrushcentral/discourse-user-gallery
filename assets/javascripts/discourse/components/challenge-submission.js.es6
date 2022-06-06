@@ -5,23 +5,8 @@ import { zbc_domain } from "../utils/const";
 import Post from "discourse/models/post";
 
 export default class ChallengeSubmission extends Component {
-  async topicViews() {
-    const submission = this.get("submission");
-    const topicId = submission.topicId;
-    const res = await fetch(
-      `${zbc_domain}/t/${topicId}.json?track_visit=true&forceLoad=true`
-    );
-    const data = res.json();
-    return data;
-  }
-
-  @action
-  async openSubmissionModal() {
-    this.topicViews();
+  async didInsertElement() {
     const topicId = this.submission.topicId;
-    const submission = this.get("submission");
-    const title = this.submission.topic.title;
-    const postCount = this.submission.topic.posts_count - 1;
     const postUrl = `${zbc_domain}/t/${topicId}/posts.json`;
     const resp = await fetch(postUrl).then((res) =>
       res.json().then((data) => data)
@@ -35,6 +20,30 @@ export default class ChallengeSubmission extends Component {
       return comment;
     });
     const topicPost = comments.shift();
+    this.set("comments", comments);
+    this.set("topicPost", topicPost);
+    const score = topicPost.likeAction.count + this.submission.views;
+    this.set("score", score);
+  }
+  async topicViews() {
+    const submission = this.get("submission");
+    const topicId = submission.topicId;
+    const res = await fetch(
+      `${zbc_domain}/t/${topicId}.json?track_visit=true&forceLoad=true`
+    );
+    const data = res.json();
+    return data;
+  }
+
+  @action
+  async openSubmissionModal() {
+    this.topicViews();
+    const submission = this.get("submission");
+    const title = this.submission.topic.title;
+    const postCount = this.submission.topic.posts_count - 1;
+
+    const comments = this.get("comments");
+    const topicPost = this.get("topicPost");
 
     showModal("challengeDetailsSubmissionModal", {
       titleTranslated: title,

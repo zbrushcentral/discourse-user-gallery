@@ -15,7 +15,7 @@ export default Ember.Route.extend({
     const topics = response.topic_list.topics;
     //this is the first topic that is about the category
     const aboutCategory = topics.shift();
-
+    console.log(aboutCategory);
     const submissions = topics.map((topic) => {
       const topicId = topic.id;
       const src = topic.image_url;
