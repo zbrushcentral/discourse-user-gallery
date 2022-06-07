@@ -1,4 +1,10 @@
-<div {{on "click" (fn this.openSubmissionModal)}}>
-  <img src={{submission.src}} class="submisson-image" />
-  <div class="score">SCORE: {{score}}</div>
-</div>
+{{#if statusIsOpen}}
+  <div {{on "click" (fn this.openSubmissionModal)}}>
+    <img src={{submission.src}} class="submisson-image" />
+  </div>
+{{else}}
+  <div>
+    <img src={{submission.src}} class="submisson-image" />
+    <div class="score">FINAL SCORE:{{score}}</div>
+  </div>
+{{/if}}

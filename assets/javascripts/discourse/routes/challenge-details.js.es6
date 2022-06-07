@@ -10,6 +10,9 @@ export default Ember.Route.extend({
     );
     const challenge = await res.json();
 
+    const isClosed = challenge.status === "closed";
+    const isOpen = challenge.status === "open";
+
     const challengeUrl = `${zbc_domain}/c/${challenge.category_slug}/${challenge.category_id}.json`;
     const response = await fetch(challengeUrl).then((res) => res.json());
     const topics = response.topic_list.topics;
@@ -24,6 +27,6 @@ export default Ember.Route.extend({
       return { src, topic, topicId, views };
     });
 
-    return { challenge, submissions };
+    return { challenge, submissions, isOpen };
   },
 });
