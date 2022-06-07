@@ -22,7 +22,8 @@ export default class ChallengeSubmission extends Component {
     const topicPost = comments.shift();
     this.set("comments", comments);
     this.set("topicPost", topicPost);
-    const score = topicPost.likeAction.count + this.submission.views;
+    const superLike = topicPost.likeAction.count * 25;
+    const score = superLike + this.submission.views;
     this.set("score", score);
   }
   async topicViews() {
