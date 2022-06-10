@@ -1,3 +1,15 @@
+{{#if topicPost.yours}}
+  <div class="challenge-scorebar-component">
+    <ScoreBar
+      @score={{score}}
+      @likes={{likes}}
+      @views={{submission.views}}
+      @superLike={{superLike}}
+      @title={{submission.title}}
+      @totalSubmissions={{totalSubmissions}}
+    />
+  </div>
+{{/if}}
 {{#if statusIsOpen}}
   <div {{on "click" (fn this.openSubmissionModal)}}>
     <img src={{submission.src}} class="submisson-image" />
