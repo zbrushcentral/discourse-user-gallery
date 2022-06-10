@@ -20,12 +20,22 @@ export default class ChallengeSubmission extends Component {
       return comment;
     });
     const topicPost = comments.shift();
+
     this.set("comments", comments);
     this.set("topicPost", topicPost);
-    const superLike = topicPost.likeAction.count * 25;
-    const score = superLike + this.submission.views;
+    const likes = topicPost.likeAction.count;
+    this.set("likes", likes);
+    const views = this.submission.views;
+    const superLike = likes * 25;
+    this.set("superLike", superLike);
+    const score = superLike + views;
     this.set("score", score);
+
+    this.set("submission.score", score);
+
+    // num.sort((a, b) => b - a); => 10, 9 ,8, 7 etc
   }
+
   async topicViews() {
     const submission = this.get("submission");
     const topicId = submission.topicId;

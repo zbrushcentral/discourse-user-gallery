@@ -1,0 +1,29 @@
+<div class="challenge-scorebar-container">
+  <div class="col-md-2">
+    <span class="challenge-user-entry-title">{{title}}</span>
+  </div>
+  <div class="col-md-3">
+    <div class="col-md-2 challenge-user-views">{{views}} Views</div>
+    <div class="col-md-2 challenge-user-likes">{{superLike}} Likes</div>
+  </div>
+  <div class="col-md-7 challenge-hourglass-bar">
+    {{!-- {{if trending...}} --}}
+    <span class="challenge-user-trended">
+      <span class="fire">
+        {{d-icon "fire"}}
+      </span><!-- ./this icon will be svg at some point and need some logic --></span>
+    {{!-- {{/if}} --}}
+    <div class="challenge-user-placement">
+      <span class="challenge-user-position">Users Place in Challenge</span>
+      /
+      <span class="challenge-user-entrycount">{{totalSubmissions}}</span>
+    </div>
+    <div class="challenge-user-finale">
+      {{!-- {{if user won/winning}}
+         <span class="orange trophy">{{d-icon "trophy"}}</span>
+      {{else}} --}}
+      <span class="trophy">{{d-icon "trophy"}}</span>
+    </div>
+  </div>
+
+</div>
