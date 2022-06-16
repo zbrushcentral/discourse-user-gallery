@@ -7,12 +7,12 @@ import { reload } from "discourse/helpers/page-reloader";
 export default class ChallengeDetailsSubmissionModalController extends Controller {
   @action
   async addVote() {
-    const topicPost = this.get("model.topicPost");
+    const topicPost = this.get("model.submission.topicPost");
     topicPost.likeAction.toggle(topicPost);
   }
   @action
   async removeVote() {
-    const topicPost = this.get("model.topicPost");
+    const topicPost = this.get("model.submission.topicPost");
     topicPost.likeAction.toggle(topicPost);
   }
 
@@ -27,7 +27,7 @@ export default class ChallengeDetailsSubmissionModalController extends Controlle
   @action
   async submitComment(value) {
     this.get("value");
-    const topicId = this.get("model.topicPost.topic_id");
+    const topicId = this.get("model.submission.topicPost.topic_id");
     await $.ajax(`${zbc_domain}/posts.json`, {
       contentType: "application/json",
       type: "POST",

@@ -1,22 +1,16 @@
-{{#if topicPost.yours}}
-  <div class="challenge-scorebar-component">
-    <ScoreBar
-      @score={{score}}
-      @likes={{likes}}
-      @views={{submission.views}}
-      @superLike={{superLike}}
-      @title={{submission.title}}
-      @totalSubmissions={{totalSubmissions}}
-    />
-  </div>
-{{/if}}
 {{#if statusIsOpen}}
   <div {{on "click" (fn this.openSubmissionModal)}}>
     <img src={{submission.src}} class="submisson-image" />
   </div>
-{{else}}
-  <div>
+{{else if submission.score}}
+  <div class="submission-score">
     <img src={{submission.src}} class="submisson-image" />
-    <div class="score">FINAL SCORE:{{score}}</div>
+    <div class="score">
+      <span class="trophy">{{d-icon "trophy"}}</span>{{submission.score}}</div>
+  </div>
+{{else}}
+  <div class="submission-no-score">
+    <img src={{submission.src}} class="submisson-image" />
+    <div class="score"> <span class="trophy">{{d-icon "trophy"}}</span>0</div>
   </div>
 {{/if}}
