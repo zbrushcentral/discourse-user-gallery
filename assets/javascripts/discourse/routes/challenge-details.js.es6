@@ -18,18 +18,61 @@ export default Ember.Route.extend({
     const response = await fetch(challengeUrl).then((res) => res.json());
     //this is the first topic that is about the category
     const topics = response.topic_list.topics.slice(1);
+    console.log(topics);
 
-    const submissions = topics.map((topic) => {
-      const src = topic.image_url;
-      const topicId = topic.id;
-      const views = topic.views;
-      const title = topic.title;
-      const score = "";
+    let submissions = await Promise.all(
+      topics.map(async (topic) => {
+        const src = topic.image_url;
+        const topicId = topic.id;
+        const views = topic.views;
+        const title = topic.title;
+        const postUrl = `${zbc_domain}/t/${topicId}/posts.json`;
+        const resp = await fetch(postUrl).then((res) =>
+          res.json().then((data) => data)
+        );
 
-      return { src, topic, topicId, views, title, score };
-    });
+        const posts = resp.post_stream.posts;
+
+        const comments = posts.map((post) => {
+          const comment = Post.create(post);
+          comment.avatar = post.avatar_template.replace("{size}", "90");
+          return comment;
+        });
+        const topicPost = comments.shift();
+        const isCurrentUser = topicPost.yours;
+        const likes = topicPost.likeAction.count;
+        const superLike = likes * 25;
+        const score = superLike + views;
+
+        return {
+          src,
+          topic,
+          topicId,
+          views,
+          title,
+          score,
+          comments,
+          topicPost,
+          likes,
+          superLike,
+          isCurrentUser,
+        };
+      })
+    );
+
+    submissions = submissions
+      .sort((a, b) => b.score - a.score)
+      .map((submission, index) => {
+        return {
+          ...submission,
+          placement: index + 1,
+        };
+      });
+    // .sort(() => {
+    //   Math.random() < 0.5 ? -1 : 1;
+    // });
 
     const totalSubmissions = submissions.length;
-    return { challenge, submissions, isOpen, totalSubmissions };
+    return { challenge, submissions, isOpen, isClosed, totalSubmissions };
   },
 });

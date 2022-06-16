@@ -3,13 +3,13 @@
     <div class="container-left">
       <div class="container-image">
         <div class="container-top-like">
-          {{#if model.topicPost.likeAction.acted}}
+          {{#if model.submission.topicPost.likeAction.acted}}
             <span
               {{action "removeVote"}}
               class="liked-heart"
               style="color: #c0394a;"
             >{{d-icon "heart"}}</span>
-          {{else if model.topicPost.yours}}
+          {{else if model.submission.topicPost.yours}}
             <span style="color:#c0394a;" class="comment-liked-heart">{{d-icon
                 "heart"
               }}</span>
@@ -40,19 +40,19 @@
       <div class="container-username">
         <div class="topic-avatar"><a
             class="trigger-user-card main-avatar"
-            href="/u/{{model.topicPost.username}}"
-            data-user-card={{model.topicPost.username}}
+            href="/u/{{model.submission.topicPost.username}}"
+            data-user-card={{model.submission.topicPost.username}}
             aria-hidden="true"
           ><img
-              alt="{{model.topicPost.username}}'s Avatar"
+              alt="{{model.submission.topicPost.username}}'s Avatar"
               width="45"
               height="45"
               size="45"
-              src={{model.topicPost.avatar}}
+              src={{model.submission.topicPost.avatar}}
               class="avatar"
             /></a><div class="poster-avatar-extra"></div>
         </div>
-        <p class="username">{{model.topicPost.username}}</p>
+        <p class="username">{{model.submission.topicPost.username}}</p>
       </div>
       <div class="container-topic-meta">
         <span class="views-value">{{model.submission.topic.views}}</span>
@@ -61,21 +61,21 @@
         <span class="comments-value">{{model.postCount}}</span>
         <div class="container-bottom-like">
 
-          {{#if model.topicPost.likeAction.count}}
+          {{#if model.submission.topicPost.likeAction.count}}
 
             <span class="like-value">
-              {{model.topicPost.likeAction.count}}</span>
+              {{model.submission.topicPost.likeAction.count}}</span>
           {{else}}
             <span class="like-value">0</span>
           {{/if}}
 
-          {{#if model.topicPost.likeAction.acted}}
+          {{#if model.submission.topicPost.likeAction.acted}}
             <span
               {{action "removeVote"}}
               class="liked-heart"
               style="color: #c0394a;"
             >{{d-icon "heart"}}</span>
-          {{else if model.topicPost.yours}}
+          {{else if model.submission.topicPost.yours}}
             <span style="color:#c0394a;" class="comment-liked-heart">{{d-icon
                 "heart"
               }}</span>
@@ -93,7 +93,7 @@
       </span>
 
       <div class="wrap-comments">
-        {{#each model.comments as |comment|}}
+        {{#each model.submission.comments as |comment|}}
           <div class="container-comments">
             <div class="comment-username">{{comment.username}}</div>
 

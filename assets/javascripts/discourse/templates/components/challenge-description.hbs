@@ -1,6 +1,30 @@
-<a
-  href="{{zbc_domain}}/u/{{name}}/gallery"
-  class="enter-challenge raw-topic-list"
->
-  Enter >
-</a>
+{{#if statusIsOpen}}
+  <div class="challenge-thumbnail-header">
+    <img
+      src="{{challenge.thumbnail}}"
+      class="challenge-thumbnail"
+      alt="Challenge Thumbnail"
+    />
+  </div>
+  <div class="row">
+    <h1>{{challenge.name}} </h1>
+  </div>
+  <Countdown @endDate={{challenge.end_date}} />
+  <p>
+    {{challenge.description}}
+  </p>
+  <div class="challenge-links">
+    <p>You must be logged in to enter. Your entry must be an image previously
+      posted in a topic. To enter a
+      <br />
+      new image, first create a topic containing that image.
+      <a href="#">More Info</a>
+    </p>
+    <a
+      href="{{zbc_domain}}/u/{{name}}/gallery"
+      class="enter-challenge raw-topic-list"
+    >
+      Enter >
+    </a>
+  </div>
+{{/if}}
