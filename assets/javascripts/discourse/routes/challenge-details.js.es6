@@ -44,7 +44,7 @@ export default Ember.Route.extend({
         const topicPost = comments.shift();
         const isCurrentUser = topicPost.yours;
         const likes =
-          topicPost.likeAction.count === undefined
+          topicPost?.likeAction?.count === undefined
             ? 0
             : topicPost.likeAction.count;
         const superLike = likes * 25;
