@@ -20,7 +20,7 @@ export default class ChallengeSubmission extends Component {
     const submission = this.get("submission");
     const title = submission.topic.title;
     const postCount = submission.topic.posts_count - 1;
-
+    const likes = submission.likes;
     const comments = submission.comments;
     const topicPost = submission.topicPost;
 
@@ -31,6 +31,7 @@ export default class ChallengeSubmission extends Component {
         comments,
         postCount,
         topicPost,
+        likes,
       },
     });
   }
