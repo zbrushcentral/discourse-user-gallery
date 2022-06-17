@@ -40,19 +40,19 @@
       <div class="container-username">
         <div class="topic-avatar"><a
             class="trigger-user-card main-avatar"
-            href="/u/{{model.submission.topicPost.username}}"
-            data-user-card={{model.submission.topicPost.username}}
+            href="/u/{{model.topicPost.username}}"
+            data-user-card={{model.topicPost.username}}
             aria-hidden="true"
           ><img
-              alt="{{model.submission.topicPost.username}}'s Avatar"
+              alt="{{model.topicPost.username}}'s Avatar"
               width="45"
               height="45"
               size="45"
-              src={{model.submission.topicPost.avatar}}
+              src={{model.topicPost.avatar}}
               class="avatar"
             /></a><div class="poster-avatar-extra"></div>
         </div>
-        <p class="username">{{model.submission.topicPost.username}}</p>
+        <p class="username">{{model.topicPost.username}}</p>
       </div>
       <div class="container-topic-meta">
         <span class="views-value">{{model.submission.topic.views}}</span>
@@ -61,15 +61,15 @@
         <span class="comments-value">{{model.postCount}}</span>
         <div class="container-bottom-like">
 
-          {{#if model.submission.topicPost.likeAction.count}}
+          {{#if model.topicPost.likeAction.count}}
 
             <span class="like-value">
-              {{model.submission.topicPost.likeAction.count}}</span>
+              {{model.topicPost.likeAction.count}}</span>
           {{else}}
             <span class="like-value">0</span>
           {{/if}}
 
-          {{#if model.submission.topicPost.likeAction.acted}}
+          {{#if model.topicPost.likeAction.acted}}
             <span
               {{action "removeVote"}}
               class="liked-heart"
