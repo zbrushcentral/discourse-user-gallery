@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     const challengeUrl = `${zbc_domain}/c/${challenge.category_slug}/${challenge.category_id}.json`;
     const response = await fetch(challengeUrl).then((res) => res.json());
     //this is the first topic that is about the category
-    const topics = response.topic_list.topics;
+    const topics = response.topic_list.topics.slice(1);
 
     let submissions = await Promise.all(
       topics.map(async (topic) => {
@@ -78,7 +78,7 @@ export default Ember.Route.extend({
     //   Math.random() < 0.5 ? -1 : 1;
     // });
 
-    const totalSubmissions = submissions.length - 1;
+    const totalSubmissions = submissions.length;
     return { challenge, submissions, isOpen, isClosed, totalSubmissions };
   },
 });
