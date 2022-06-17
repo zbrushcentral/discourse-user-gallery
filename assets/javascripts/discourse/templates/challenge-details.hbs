@@ -6,16 +6,17 @@
     @challenge={{this.model.challenge}}
     @statusIsOpen={{this.model.isOpen}}
   />
+  {{#each this.model.submissions as |sub|}}
+    <div class="challenge-scorebar-component">
+      <ScoreBar
+        @submission={{sub}}
+        @statusIsOpen={{this.model.isOpen}}
+        @totalSubmissions={{this.model.totalSubmissions}}
+      />
+    </div>
+  {{/each}}
 </div>
-
 {{#each this.model.submissions as |submission|}}
-  <div class="challenge-scorebar-component">
-    <ScoreBar
-      @submission={{submission}}
-      @statusIsOpen={{this.model.isOpen}}
-      @totalSubmissions={{this.model.totalSubmissions}}
-    />
-  </div>
   <div class="submission-container">
     <ChallengeSubmission
       @submission={{submission}}
