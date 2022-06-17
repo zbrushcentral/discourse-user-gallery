@@ -40,7 +40,7 @@
       <div class="container-username">
         <div class="topic-avatar"><a
             class="trigger-user-card main-avatar"
-            href="/u/{{model.topicPost.username}}"
+            href="/u/{{model.submission.topicPost.username}}"
             data-user-card={{model.topicPost.username}}
             aria-hidden="true"
           ><img
@@ -61,10 +61,10 @@
         <span class="comments-value">{{model.postCount}}</span>
         <div class="container-bottom-like">
 
-          {{#if model.topicPost.likeAction.count}}
+          {{#if model.likes}}
 
             <span class="like-value">
-              {{model.topicPost.likeAction.count}}</span>
+              {{model.likes}}</span>
           {{else}}
             <span class="like-value">0</span>
           {{/if}}
@@ -100,10 +100,8 @@
             <img width="45" height="45" src={{comment.avatar}} class="avatar" />
             <div class="comment-cooked">{{html-safe comment.cooked}}</div>
 
-            {{#if comment.likeAction.count}}
-              <span
-                class="comment-like-value"
-              >{{comment.likeAction.count}}</span>
+            {{#if comment.commentLikes}}
+              <span class="comment-like-value">{{comment.commentLikes}}</span>
             {{else}}
               <span class="comment-like-value">0</span>
             {{/if}}

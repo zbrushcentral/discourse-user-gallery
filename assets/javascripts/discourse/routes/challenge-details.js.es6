@@ -35,11 +35,18 @@ export default Ember.Route.extend({
         const comments = posts.map((post) => {
           const comment = Post.create(post);
           comment.avatar = post.avatar_template.replace("{size}", "90");
+          let commentLikes = "";
+          comment.commentLikes =
+            post?.likeAction?.count === undefined ? 0 : post.likeAction.count;
+
           return comment;
         });
         const topicPost = comments.shift();
         const isCurrentUser = topicPost.yours;
-        const likes = topicPost.likeAction.count;
+        const likes =
+          topicPost.likeAction.count === undefined
+            ? 0
+            : topicPost.likeAction.count;
         const superLike = likes * 25;
         const score = superLike + views;
 
