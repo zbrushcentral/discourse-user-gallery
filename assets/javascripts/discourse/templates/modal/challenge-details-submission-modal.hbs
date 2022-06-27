@@ -3,7 +3,7 @@
     <div class="container-left">
       <div class="container-image">
         <div class="container-top-like">
-          {{#if model.submission.topicPost.likeAction.acted}}
+          {{#if model.topicPost.likeAction.acted}}
             <span
               {{action "removeVote"}}
               class="liked-heart"
@@ -40,7 +40,7 @@
       <div class="container-username">
         <div class="topic-avatar"><a
             class="trigger-user-card main-avatar"
-            href="/u/{{model.submission.topicPost.username}}"
+            href="/u/{{model.topicPost.username}}"
             data-user-card={{model.topicPost.username}}
             aria-hidden="true"
           ><img
@@ -61,10 +61,10 @@
         <span class="comments-value">{{model.postCount}}</span>
         <div class="container-bottom-like">
 
-          {{#if model.likes}}
+          {{#if model.topicPost.likeAction.count}}
 
             <span class="like-value">
-              {{model.likes}}</span>
+              {{model.topicPost.likeAction.count}}</span>
           {{else}}
             <span class="like-value">0</span>
           {{/if}}
@@ -93,15 +93,17 @@
       </span>
 
       <div class="wrap-comments">
-        {{#each model.submission.comments as |comment|}}
+        {{#each model.comments as |comment|}}
           <div class="container-comments">
             <div class="comment-username">{{comment.username}}</div>
 
             <img width="45" height="45" src={{comment.avatar}} class="avatar" />
             <div class="comment-cooked">{{html-safe comment.cooked}}</div>
 
-            {{#if comment.commentLikes}}
-              <span class="comment-like-value">{{comment.commentLikes}}</span>
+            {{#if comment.likeAction.count}}
+              <span
+                class="comment-like-value"
+              >{{comment.likeAction.count}}</span>
             {{else}}
               <span class="comment-like-value">0</span>
             {{/if}}

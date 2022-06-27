@@ -7,12 +7,12 @@ import { reload } from "discourse/helpers/page-reloader";
 export default class ChallengeDetailsSubmissionModalController extends Controller {
   @action
   async addVote() {
-    const topicPost = this.get("model.submission.topicPost");
+    const topicPost = this.get("model.topicPost");
     topicPost.likeAction.toggle(topicPost);
   }
   @action
   async removeVote() {
-    const topicPost = this.get("model.submission.topicPost");
+    const topicPost = this.get("model.topicPost");
     topicPost.likeAction.toggle(topicPost);
   }
 
