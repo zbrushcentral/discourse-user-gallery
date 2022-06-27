@@ -35,9 +35,6 @@ export default Ember.Route.extend({
         const comments = posts.map((post) => {
           const comment = Post.create(post);
           comment.avatar = post.avatar_template.replace("{size}", "90");
-          let commentLikes = "";
-          comment.commentLikes =
-            post?.likeAction?.count === undefined ? 0 : post.likeAction.count;
 
           return comment;
         });
@@ -59,7 +56,7 @@ export default Ember.Route.extend({
           score,
           comments,
           topicPost,
-          likes,
+          posts,
           superLike,
           isCurrentUser,
         };
