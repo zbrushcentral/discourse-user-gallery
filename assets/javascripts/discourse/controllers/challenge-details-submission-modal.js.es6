@@ -27,7 +27,7 @@ export default class ChallengeDetailsSubmissionModalController extends Controlle
   @action
   async submitComment(value) {
     this.get("value");
-    const topicId = this.get("model.submission.topicPost.topic_id");
+    const topicId = this.get("model.topicPost.topic_id");
     await $.ajax(`${zbc_domain}/posts.json`, {
       contentType: "application/json",
       type: "POST",
