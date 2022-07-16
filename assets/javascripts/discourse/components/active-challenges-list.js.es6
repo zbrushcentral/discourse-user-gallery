@@ -12,8 +12,10 @@ export default Component.extend({
     }
     this.getChallenges();
   },
+
   didInsertElement() {
-    $("#carousel-component").prependTo(".tiles-grid .tiles-gutter-sizer");
+    const element = $("#carousel-component");
+    $(".tiles-gutter-sizer").after(element);
   },
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
