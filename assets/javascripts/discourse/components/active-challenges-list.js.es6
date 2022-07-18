@@ -14,8 +14,7 @@ export default Component.extend({
   },
 
   didInsertElement() {
-    const element = $("#carousel-component");
-    $(".tiles-gutter-sizer").after(element);
+    $("#carousel-component").appendTo(".tiles-gutter-sizer");
   },
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
