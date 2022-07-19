@@ -13,7 +13,8 @@ export default Component.extend({
     this.getChallenges();
   },
   didInsertElement() {
-    $("#carousel-component").prependTo($(".tiles-grid"));
+    const elements = $("#carousel-container");
+    $(".tiles-grid").masonry("prepended", elements);
   },
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
