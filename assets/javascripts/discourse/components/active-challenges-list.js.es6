@@ -12,10 +12,10 @@ export default Component.extend({
     }
     this.getChallenges();
   },
-  didInsertElement() {
-    const elements = $("#carousel-container");
-    $(".tiles-grid").masonry("prepended", elements);
-  },
+  // didInsertElement() {
+  //   const elements = $("#carousel-container");
+  //   $(".tiles-grid").masonry("prepended", elements);
+  // },
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
     this.set("challenges", challenges);
