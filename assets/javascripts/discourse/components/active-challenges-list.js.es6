@@ -13,8 +13,8 @@ export default Component.extend({
     this.getChallenges();
   },
   didInsertElement() {
-        let grid = $(".tiles-grid")
-        let elements = $(`
+    let grid = $(".tiles-grid");
+    let elements = $(`
     <div
       id="carousel-container"
       class="carousel-container tiles-grid-item topic-list-item"
@@ -76,14 +76,24 @@ export default Component.extend({
           <label class="carousel__indicator" for="H"></label>
         </div>
       </div>
-    </div>`).css("width", "500px").css("height", "500px");
-        if(grid){
-            $('.tiles-grid').masonry({ itemSelector: '.tiles-grid', columnWidth: '.tiles-grid-sizer', percentPosition: true });
-             jQuery(".tiles-grid").prepend(elements).masonry("prepended", elements).css("visibility", "visible");
-              $(".tiles-grid").masonry('layout');
-        }else {
-          console.log("No Grid!")
-        }
+    </div>`)
+      .css("width", "500px")
+      .css("height", "500px");
+    if (grid) {
+      console.log("yes grid");
+      $(".tiles-grid").masonry({
+        itemSelector: ".tiles-grid",
+        columnWidth: ".tiles-grid-sizer",
+        percentPosition: true,
+      });
+      jQuery(".tiles-grid")
+        .prepend(elements)
+        .masonry("prepended", elements)
+        .css("visibility", "visible");
+      $(".tiles-grid").masonry("layout");
+    } else {
+      console.log("No Grid!");
+    }
   },
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
