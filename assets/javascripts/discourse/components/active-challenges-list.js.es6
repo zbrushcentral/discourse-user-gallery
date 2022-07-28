@@ -12,25 +12,7 @@ export default Component.extend({
     }
     this.getChallenges();
   },
-  // didInsertElement() {
-  //   let grid = $(".tiles-grid");
-  //   let elements = $("#carousel-container");
-  //   if (grid) {
-  //     console.log("yes grid");
-  //     $(".tiles-grid").masonry({
-  //       itemSelector: ".tiles-grid",
-  //       columnWidth: ".tiles-grid-sizer",
-  //       percentPosition: true,
-  //     });
-  //     jQuery(".tiles-grid")
-  //       .prepend(elements)
-  //       .masonry("prepended", elements)
-  //       .css("visibility", "visible");
-  //     $(".tiles-grid").masonry("layout");
-  //   } else {
-  //     console.log("No Grid!");
-  //   }
-  // },
+
   async getChallenges() {
     const challenges = await this.challengeService.getChallenges();
     this.set("challenges", challenges);
